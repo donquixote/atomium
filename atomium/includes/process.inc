@@ -7,6 +7,9 @@
 
 /**
  * Implements hook_process().
+ *
+ * @param array $variables
+ * @param string $hook
  */
 function atomium_process(array &$variables, $hook) {
   atomium_recursive_foreach($variables, function ($key, &$value, &$parent) use (&$variables) {
