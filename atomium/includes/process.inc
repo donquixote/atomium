@@ -12,22 +12,31 @@
  * @param string $hook
  */
 function atomium_process(array &$variables, $hook) {
-  atomium_recursive_foreach($variables, function ($key, &$value, &$parent) use (&$variables) {
-    if (!isset($variables['theme_hook_original'])) {
-      return;
+
+  if (!isset($variables['theme_hook_original'])) {
+    return;
+  }
+
+  // Look for renderable elements in $variables.
+  // @todo Look into theme registry to determine which keys to check?
+  foreach ($variables as $key => $value) {
+
+    if (!is_array($value)) {
+      continue;
     }
 
-    if ('#theme' === $key) {
+    if (isset($value['#theme'])) {
       _atomium_extend_theme_property(
-        $parent,
+        $variables[$key],
         array($variables['theme_hook_original'])
       );
     }
-    if ('#theme_wrappers' === $key) {
+
+    if (isset($value['#theme_wrappers'])) {
       _atomium_extend_theme_wrappers_property(
-        $parent,
+        $variables[$key],
         array($variables['theme_hook_original'])
       );
     }
-  });
+  }
 }
