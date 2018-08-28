@@ -67,4 +67,6 @@ drupal_static_reset('element_info');
  * Hook_*_alter() implementations must live (via include) inside this file so
  * they are properly detected when drupal_alter() is invoked.
  */
-atomium_include('atomium', 'includes/alter');
+foreach (glob(__DIR__ . '/includes/alter/*.inc') as $file_to_include) {
+  include_once $file_to_include;
+}

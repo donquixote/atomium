@@ -42,6 +42,20 @@ function atomium_include($theme, $path) {
 }
 
 /**
+ * Includes all files in a directory.
+ *
+ * @param string $path
+ *   Absolute path to a known directory.
+ * @param string $file_extension
+ *   The extension of files to include, e.g. ".inc" or ".php".
+ */
+function _atomium_include_directory($path, $file_extension = '.inc') {
+  foreach (glob($path . '/*' . $file_extension) as $file_to_include) {
+    require_once $file_to_include;
+  }
+}
+
+/**
  * Returns a list of base themes for active or provided theme.
  *
  * @param string $theme_key
