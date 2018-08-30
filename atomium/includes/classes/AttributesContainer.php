@@ -8,55 +8,72 @@ namespace Drupal\atomium;
  * @package Drupal\atomium
  */
 class AttributesContainer implements \ArrayAccess {
+
   /**
    * Stores the attribute data.
    *
-   * @var array
+   * @var \Drupal\atomium\Attributes[]
+   *   Format: $[$channel] = $attributes
    */
   protected $storage = array();
 
   /**
    * AttributesContainer constructor.
    *
-   * @param array $attributes
-   *   An array of attributes.
+   * @param mixed[][] $attributess
+   *   Format:
+   *   - $[$channel][$attribute_name] = $attribute_value :string
+   *   - $[$channel][$attribute_name][] = $attribute_value_part
+   *   - $[$channel][$attribute_name] = FALSE|TRUE  (attributes without value)
    */
-  public function __construct(array $attributes = array()) {
-    foreach ($attributes as $name => $value) {
-      $this->offsetGet($name)->setAttributes($value);
+  public function __construct(array $attributess = array()) {
+    foreach ($attributess as $channel => $attributes) {
+      $this->storage[$channel] = new Attributes($attributes);
+    }
+  }
+
+  /**
+   * @param string|int $channel
+   *
+   * @return \Drupal\atomium\Attributes
+   */
+  public function &offsetGet($channel) {
+    if (!isset($this->storage[$channel])) {
+      $this->storage[$channel] = new Attributes();
+    }
+    return $this->storage[$channel];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function offsetSet($channel, $attributes) {
+    if (!is_array($attributes)) {
+      throw new \InvalidArgumentException('$attributes must be an array.');
+    }
+    if (isset($this->storage[$channel])) {
+      $this->storage[$channel]->setAttributes($attributes);
+    }
+    else {
+      $this->storage[$channel] = new Attributes($attributes);
     }
   }
 
   /**
    * {@inheritdoc}
    */
-  public function &offsetGet($name) {
-    $this->storage += array(
-      $name => new Attributes(),
-    );
-
-    return $this->storage[$name];
+  public function offsetUnset($channel) {
+    unset($this->storage[$channel]);
   }
 
   /**
-   * {@inheritdoc}
+   * @param mixed $channel
+   *
+   * @return bool
    */
-  public function offsetSet($name, $value) {
-    $this->storage[$name] = $this->offsetGet($name)->setAttributes($value);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function offsetUnset($name) {
-    unset($this->storage[$name]);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function offsetExists($name) {
-    return isset($this->storage[$name]);
+  public function offsetExists($channel) {
+    // @todo Also check if empty?
+    return isset($this->storage[$channel]);
   }
 
   /**
