@@ -177,7 +177,9 @@
         return: ' placeholder="helloA Bworld"'
     - getStorage:
         return:
-          placeholder: ['<b>hello<em>A', 'B</em>world</b>']
+          placeholder:
+            '<b>hello<em>A': '<b>hello<em>A'
+            'B</em>world</b>': 'B</em>world</b>'
 
 -
   given: { }
@@ -188,4 +190,5 @@
         return: ' placeholder="helloA Bworld"'
     - getStorage:
         return:
-          placeholder: ['<b>hello<em>A B</em>world</b>']
+          placeholder:
+            '<b>hello<em>A B</em>world</b>': '<b>hello<em>A B</em>world</b>'
