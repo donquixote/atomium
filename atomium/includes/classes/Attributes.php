@@ -46,8 +46,6 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
         $this->keyCollectNestedFragmentsInArray($key, $value);
       }
     }
-
-    $this->checkIntegrity();
   }
 
   /**
@@ -67,22 +65,17 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       foreach ($attributes->storage as $name => $value) {
         $this->storage[$name] = $value;
       }
-      $this->checkIntegrity();
       return $this;
     }
 
     foreach ($attributes as $name => $value) {
       if (is_numeric($name)) {
         $this->setAttribute($value, TRUE, $explode);
-        $this->checkIntegrity();
       }
       else {
         $this->setAttribute($name, $value, $explode);
-        $this->checkIntegrity();
       }
     }
-
-    $this->checkIntegrity();
 
     return $this;
   }
@@ -127,8 +120,6 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       $this->storage[$name] = [];
       $this->keyCollectNestedFragmentsInArray($name, $value);
     }
-
-    $this->checkIntegrity();
   }
 
   /**
@@ -136,8 +127,6 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    */
   public function offsetUnset($name) {
     unset($this->storage[$name]);
-
-    $this->checkIntegrity();
   }
 
   /**
@@ -185,8 +174,6 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       }
     }
 
-    $this->checkIntegrity();
-
     return $this;
   }
 
@@ -219,8 +206,6 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       }
       $this->keyCollectNestedFragmentsInArray($key, $value);
     }
-
-    $this->checkIntegrity();
 
     return $this;
   }
@@ -258,8 +243,6 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       }
     }
 
-    $this->checkIntegrity();
-
     return $this;
   }
 
@@ -295,8 +278,6 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
         $this->delete($nested_arg);
       }
     }
-
-    $this->checkIntegrity();
 
     return $this;
   }
@@ -335,8 +316,6 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       $this->storage[$key] = array_combine($this->storage[$key], $this->storage[$key]);
     }
 
-    $this->checkIntegrity();
-
     return $this;
   }
 
@@ -363,7 +342,6 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
         }
         $this->storage[$key] += $value;
       }
-      $this->checkIntegrity();
     }
     elseif (is_array($data)) {
       foreach ($data as $key => $unchecked_value) {
@@ -376,13 +354,9 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
           }
 
           $this->keyCollectNestedFragmentsInStringOrArray($key, $unchecked_value);
-          $this->checkIntegrity();
         }
       }
-      $this->checkIntegrity();
     }
-
-    $this->checkIntegrity();
 
     return $this;
   }
@@ -563,8 +537,6 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
 
     $this->storage = $storage;
 
-    $this->checkIntegrity();
-
     return $this;
   }
 
@@ -573,21 +545,6 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    */
   public function getIterator() {
     return new \ArrayIterator($this->toArray());
-  }
-
-  private function checkIntegrity() {
-    foreach ($this->storage as $key => $value) {
-      if (is_bool($value)) {
-        continue;
-      }
-      if (!is_array($value)) {
-        $export = var_export($value, TRUE);
-        throw new \RuntimeException("Values must be array|bool, $export found instead.");
-      }
-      if ($value !== array_combine($value, $value)) {
-        throw new \RuntimeException("Array values must have keys identical to values.");
-      }
-    }
   }
 
   /**
