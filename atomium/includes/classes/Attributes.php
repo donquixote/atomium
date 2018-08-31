@@ -206,7 +206,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       $this->storage[$key] = $value;
     }
     elseif (is_string($value)) {
-      if (is_bool($this->storage[$key])) {
+      if (isset($this->storage[$key]) && is_bool($this->storage[$key])) {
         unset($this->storage[$key]);
       }
       foreach (explode(' ', $value) as $part) {
@@ -214,7 +214,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       }
     }
     elseif (is_array($value)) {
-      if (is_bool($this->storage[$key])) {
+      if (isset($this->storage[$key]) && is_bool($this->storage[$key])) {
         unset($this->storage[$key]);
       }
       $this->keyCollectNestedFragmentsInArray($key, $value);
