@@ -10,12 +10,16 @@ namespace Drupal\atomium;
 class Attributes implements \ArrayAccess, \IteratorAggregate {
 
   /**
+   * @var true[]
+   *   Format: $[$name] = TRUE;
+   */
+  private $booleanAttributes = [];
+
+  /**
    * Stores the attribute data.
    *
-   * @var mixed[]|bool[]|string[][]
-   *   Format:
-   *   $[$attribute_name_safe] = true|false|array(..)
-   *   $[$attribute_name_safe][$value_part] = $value_part :string
+   * @var string[][]
+   *   Format: $[$name][$value_part] = $value_part :string
    */
   private $storage = array();
 
@@ -35,7 +39,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
 
     foreach ($attributes as $key => $value) {
       if (is_bool($value)) {
-        $this->storage[$key] = $value;
+        $this->booleanAttributes[$key] = TRUE;
       }
       elseif (is_string($value)) {
         foreach (explode(' ', $value) as $part) {
@@ -86,13 +90,13 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @return mixed|null
    */
   public function offsetGet($name) {
+    if (isset($this->booleanAttributes[$name])) {
+      return TRUE;
+    }
     if (!isset($this->storage[$name])) {
       return NULL;
     }
     $value = $this->storage[$name];
-    if (is_bool($value)) {
-      return $value;
-    }
     unset($value['']);
     # asort($value);
     $return = array_values($value);
@@ -108,7 +112,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
   public function offsetSet($name, $value = FALSE) {
 
     if (is_bool($value)) {
-      $this->storage[$name] = $value;
+      $this->booleanAttributes[$name] = TRUE;
     }
     elseif (is_string($value)) {
       $this->storage[$name] = [];
