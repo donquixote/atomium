@@ -25,10 +25,16 @@ class AttributesContainer implements \ArrayAccess {
    *   - $[$channel][$attribute_name] = $attribute_value :string
    *   - $[$channel][$attribute_name][] = $attribute_value_part
    *   - $[$channel][$attribute_name] = FALSE|TRUE  (attributes without value)
+   *   - $[$channel] = new Attributes(..)
    */
   public function __construct(array $attributess = array()) {
     foreach ($attributess as $channel => $attributes) {
-      $this->storage[$channel] = new Attributes($attributes);
+      if (is_array($attributes)) {
+        $this->storage[$channel] = new Attributes($attributes);
+      }
+      elseif ($attributes instanceof Attributes) {
+        $this->storage[$channel] = $attributes;
+      }
     }
   }
 
