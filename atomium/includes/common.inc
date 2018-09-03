@@ -666,16 +666,23 @@ function _atomium_array_flatten(array $array, array &$storage, $parentKey = '') 
  *   The settings as an array.
  */
 function atomium_get_settings($setting_keys, $base_themes = TRUE, array $value_callbacks = array('trim')) {
+  static $settings_by_theme = [];
   $theme_key = $GLOBALS['theme_key'];
-
-  $settings = array();
-
-  if ($theme_settings = atomium_get_theme_info($theme_key, 'settings', $base_themes)) {
-    _atomium_array_flatten(
-      $theme_settings,
-      $settings
-    );
+  $cid = $theme_key;
+  if ($base_themes) {
+    $cid .= '+';
   }
+
+  if (!isset($settings_by_theme[$cid])) {
+    $settings_by_theme[$cid] = [];
+    if ($theme_settings = atomium_get_theme_info($theme_key, 'settings', $base_themes)) {
+      _atomium_array_flatten(
+        $theme_settings,
+        $settings_by_theme[$cid]);
+    }
+  }
+
+  $settings = $settings_by_theme[$cid];
 
   $setting_value = array();
 
