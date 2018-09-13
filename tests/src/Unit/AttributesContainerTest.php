@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\atomium\Unit;
 
+use Drupal\atomium\htmltag\Attribute\Attribute;
 use Drupal\atomium\AttributesContainer;
 
 /**
@@ -25,7 +26,7 @@ class AttributesContainerTest extends AbstractUnitTest {
   public function testSetAttributes() {
     $attributesContainer = new AttributesContainer();
     $attributesContainer['attributes'] = array('class', 'example');
-    expect($attributesContainer['attributes'])->to->be->instanceof('drupal\atomium\Attributes');
+    expect($attributesContainer['attributes'])->to->be->instanceof('drupal\atomium\htmltag\Attributes\Attributes');
   }
 
   /**
@@ -34,7 +35,7 @@ class AttributesContainerTest extends AbstractUnitTest {
   public function testOffsetGet() {
     $container = new AttributesContainer();
     $container['foo'] = ['bar'];
-    expect($container->offsetGet('foo'))->to->be->instanceof('drupal\atomium\Attributes');
+    expect($container->offsetGet('foo'))->to->be->instanceof('drupal\atomium\htmltag\Attributes\Attributes');
   }
 
   /**
@@ -43,10 +44,10 @@ class AttributesContainerTest extends AbstractUnitTest {
   public function testOffsetUnset() {
     $container = new AttributesContainer();
     $container['foo'] = ['class' => 'bar'];
-    expect($container->offsetGet('foo')['class'])->to->equal(['bar']);
+    expect($container->offsetGet('foo')['class'])->to->be->instanceof(Attribute::class);
 
     unset($container['foo']);
-    expect($container['foo'])->to->be->instanceof('drupal\atomium\Attributes');
+    expect($container['foo'])->to->be->instanceof('drupal\atomium\htmltag\Attributes\Attributes');
     expect($container['foo']->getStorage())->to->be->empty();
   }
 
@@ -58,8 +59,8 @@ class AttributesContainerTest extends AbstractUnitTest {
     $container['foo'] = ['class' => 'bar'];
     $container['bar'] = ['class' => 'foo'];
 
-    expect($container['foo'])->to->be->instanceof('drupal\atomium\Attributes');
-    expect($container['bar'])->to->be->instanceof('drupal\atomium\Attributes');
+    expect($container['foo'])->to->be->instanceof('drupal\atomium\htmltag\Attributes\Attributes');
+    expect($container['bar'])->to->be->instanceof('drupal\atomium\htmltag\Attributes\Attributes');
 
     expect($container['foo']->toArray())->to->be->equal(['class' => ['bar']]);
     expect($container['bar']->toArray())->to->be->equal(['class' => ['foo']]);

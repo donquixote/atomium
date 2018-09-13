@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\atomium\Unit;
 
-use Drupal\atomium\Attributes;
+use Drupal\atomium\htmltag\Attributes\AttributesFactory;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -18,7 +18,7 @@ class AttributesTest extends AbstractUnitTest {
    * @dataProvider methodsProvider
    */
   public function testMethods(array $given, array $runs, array $expects) {
-    $attributes = new Attributes($given);
+    $attributes = AttributesFactory::build($given);
 
     foreach ($runs as $run) {
       foreach ($run as $method => $arguments) {
@@ -56,19 +56,18 @@ class AttributesTest extends AbstractUnitTest {
       'data-closable' => FALSE,
     );
 
-    $attributes = new Attributes($attributes);
+    $attributes = AttributesFactory::build($attributes);
 
     expect($attributes->exists('class', 'foo'))->to->equal(TRUE);
     expect($attributes->exists('class', 'fooled'))->to->equal(FALSE);
     expect($attributes->exists('foo', 'bar'))->to->equal(FALSE);
-    expect($attributes->exists('class', NULL))->to->equal(FALSE);
+    expect($attributes->exists('class', NULL))->to->equal(TRUE);
     expect($attributes->exists('id', 'atomium'))->to->equal(TRUE);
-    expect($attributes->exists('data-closable', FALSE))->to->equal(TRUE);
     expect($attributes->exists('data-closable'))->to->equal(TRUE);
 
-    expect($attributes->contains('class', 'fo'))->to->equal(TRUE);
-    expect($attributes->contains('role'))->to->equal(FALSE);
-    expect($attributes->contains('id', 'tomi'))->to->equal(TRUE);
+    expect($attributes->contains('class', 'fo'))->to->equal(FALSE);
+    expect($attributes->contains('role', NULL))->to->equal(FALSE);
+    expect($attributes->contains('id', 'tomi'))->to->equal(FALSE);
   }
 
   /**

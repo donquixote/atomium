@@ -35,7 +35,7 @@ function atomium_preprocess_textfield(array &$variables, $hook) {
   );
 
   $variables['atomium']['attributes']['element']
-    ->setAttributes(_atomium_get_attributes($variables['element']), FALSE);
+    ->import(_atomium_get_attributes($variables['element']), FALSE);
 
   $attributes['type'] = 'text';
 
