@@ -57,6 +57,8 @@ function _atomium_theme(array &$existing, $type, $theme, $path) {
 
 /**
  * Implements hook_theme_registry_alter().
+ *
+ * @param array $registry
  */
 function atomium_theme_registry_alter(array &$registry) {
   $components = array();
