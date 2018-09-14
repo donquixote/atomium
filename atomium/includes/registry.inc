@@ -64,6 +64,10 @@ function atomium_theme_registry_alter(array &$registry) {
   $components = array();
 
   // Prepare an array of files to include.
+  /**
+   * @var array[] $data
+   *   Format: $[$subdir_name] = ['theme' => $theme, 'directory' => $directory]
+   */
   foreach (atomium_find_templates() as $data) {
     foreach ($data as $component_name => $component_info) {
       foreach (glob($component_info['directory'] . '/*.component.inc') as $filename) {
