@@ -23,5 +23,10 @@ function atomium_preprocess(array &$variables, $hook) {
     $variables['atomium']['attributes'] = new AttributesContainer($variables['atomium']['attributes']);
   }
 
-  $variables['base_hook'] = atomium_get_base_hook($hook);
+  if (FALSE !== $pos = strpos($hook, '__')) {
+    $variables['base_hook'] = substr($hook, 0, $pos);
+  }
+  else {
+    $variables['base_hook'] = $hook;
+  }
 }
