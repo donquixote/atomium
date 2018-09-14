@@ -9,6 +9,9 @@ use Drupal\atomium\AttributesContainer;
 
 /**
  * Implements hook_preprocess().
+ *
+ * @param array $variables
+ * @param string $hook
  */
 function atomium_preprocess(array &$variables, $hook) {
   // Make sure the 'atomium' key is created.
