@@ -9,7 +9,7 @@ use drupal\atomium\AttributesContainer;
  *
  * @package Drupal\Tests\atomium
  */
-class AttributesContainerTest extends AbstractUnitTest {
+class AttributesContainerTest extends UnitTestBase {
 
   /**
    * Test AttributesContainer class.
