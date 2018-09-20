@@ -261,7 +261,7 @@ class AttributesExplicitTest extends UnitTestBase {
         'string-nested-array' => ['a', ['b', ['c', ['d', ['e', ['f']]]]]],
       ]);
 
-    self::assertToString(
+    self::assertToStringAdvanced(
       $expected,
       $attributes);
   }
@@ -281,6 +281,46 @@ class AttributesExplicitTest extends UnitTestBase {
       var_export($expected, TRUE),
       var_export($attributes->__toString(), TRUE),
       $message);
+  }
+
+  /**
+   * Asserts that Attributes->__toString() has the expected value.
+   *
+   * Strings are broken to multiple lines for readability.
+   *
+   * @param string $expected
+   *   Expected string value.
+   * @param \Drupal\atomium\Attributes $attributes
+   *   The attributes object.
+   * @param string $message
+   *   Message to send to self::assertSame().
+   */
+  private static function assertToStringAdvanced($expected, Attributes $attributes, $message = '') {
+    self::assertSame(
+      self::formatAtributesString($expected),
+      self::formatAtributesString($attributes->__toString()),
+      $message);
+  }
+
+  /**
+   * Formats an attributes string as multi-line PHP expression.
+   *
+   * @param string $string
+   *   The original attributes string.
+   *
+   * @return string
+   *   The PHP expression.
+   */
+  private static function formatAtributesString($string) {
+    $parts = explode(' ', $string);
+    for ($i = count($parts) - 2; $i > 0; --$i) {
+      # $parts[$i] .= '"';
+    }
+    $out = "''";
+    foreach ($parts as $part) {
+      $out .= "\n . " . var_export($part, TRUE);
+    }
+    return $out;
   }
 
 }
