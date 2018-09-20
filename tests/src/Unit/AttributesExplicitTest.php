@@ -155,6 +155,24 @@ class AttributesExplicitTest extends UnitTestBase {
   }
 
   /**
+   * Tests behavior with empty string values.
+   */
+  public function testEmptyStringValue() {
+
+    self::assertToString(
+      ' name=""',
+      new Attributes(['name' => '']));
+
+    $attributes = new Attributes();
+    $attributes->append('name', '');
+    $attributes->remove('name', '');
+    // Empty attribute remains.
+    self::assertToString(
+      ' name=""',
+      $attributes);
+  }
+
+  /**
    * Tests behavior for broken attribute names.
    *
    * Note that this is an incorrect use of this library.
