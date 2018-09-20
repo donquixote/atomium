@@ -111,6 +111,48 @@ class AttributesExplicitTest extends UnitTestBase {
   }
 
   /**
+   * Tests unusual non-string attribute values.
+   */
+  public function testUnusualAttributeValues() {
+
+    foreach ([
+      [TRUE, TRUE],
+      [FALSE, TRUE],
+      [[TRUE], '1'],
+      [[TRUE, TRUE], '1'],
+      [[FALSE, FALSE], ''],
+      [0, '0'],
+      [3, '3'],
+      [[1, 2, 3], '1 2 3'],
+      [[1, [2, [3]]], '1 2 3'],
+      [M_PI, (string) M_PI],
+      [[M_PI], (string) M_PI],
+      [[M_PI, [M_PI + 1]], M_PI . ' ' . (M_PI + 1)],
+      [['a', 'b', 'c'], 'a b c'],
+      [['a ', ' b ', ' c ', ' d ', ' e'], 'a b c d e'],
+      [['a', ['b', ['c']]], 'a b c'],
+    ] as $value_and_expected) {
+
+      list($value, $expected_value) = $value_and_expected;
+
+      if (TRUE === $expected_value) {
+        $expected = ' name';
+      }
+      elseif (NULL === $expected_value) {
+        $expected = '';
+      }
+      else {
+        $expected = ' name="' . $expected_value . '"';
+      }
+
+      self::assertToString(
+        $expected,
+        new Attributes(['name' => $value]),
+        var_export($value, TRUE));
+    }
+  }
+
+  /**
    * Tests behavior for broken attribute names.
    *
    * Note that this is an incorrect use of this library.
