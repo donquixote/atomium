@@ -18,7 +18,9 @@ class AttributesContainerKnownIssuesTest extends UnitTestBase {
     $attribute_object_reference =& $container['element'];
     $attribute_object_reference = new \stdClass();
     // Internal variable is replaced with illegal value.
-    self::assertInstanceOf(\stdClass::class, $container['element']);
+    self::assertInstanceOf(
+      \stdClass::class,
+      $container['element']);
   }
 
   /**
@@ -29,7 +31,9 @@ class AttributesContainerKnownIssuesTest extends UnitTestBase {
     // Set an illegal value.
     $this->varAssignValue($container['element'], new \stdClass());
     // Internal variable is replaced with illegal value.
-    self::assertInstanceOf(\stdClass::class, $container['element']);
+    self::assertInstanceOf(
+      \stdClass::class,
+      $container['element']);
   }
 
   /**
