@@ -56,20 +56,7 @@ class AttributesExplicitTest extends UnitTestBase {
       '  ' => '',
     ] as $value => $expected_value) {
 
-      $expected = ' name="' . $expected_value . '"';
-
-      self::assertToString(
-        $expected,
-        new Attributes(['name' => $value]),
-        var_export($value, TRUE));
-
-      $attributes = new Attributes();
-      $attributes->append('name', $value);
-
-      self::assertToString(
-        $expected,
-        $attributes,
-        var_export($value, TRUE) . ' (append)');
+      self::assertAttributeValue($value, $expected_value);
     }
   }
 
@@ -91,22 +78,9 @@ class AttributesExplicitTest extends UnitTestBase {
       '  ' => 'a z',
     ] as $value => $expected_value) {
 
-      $expected = ' name="' . $expected_value . '"';
+      $value = ['a', $value, 'z'];
 
-      self::assertToString(
-        $expected,
-        new Attributes(['name' => ['a', $value, 'z']]),
-        var_export($value, TRUE));
-
-      $attributes = new Attributes();
-      $attributes->append('name', 'a');
-      $attributes->append('name', $value);
-      $attributes->append('name', 'z');
-
-      self::assertToString(
-        $expected,
-        $attributes,
-        var_export($value, TRUE) . ' (append)');
+      self::assertAttributeValue($value, $expected_value);
     }
   }
 
@@ -137,20 +111,7 @@ class AttributesExplicitTest extends UnitTestBase {
 
       list($value, $expected_value) = $value_and_expected;
 
-      if (TRUE === $expected_value) {
-        $expected = ' name';
-      }
-      elseif (NULL === $expected_value) {
-        $expected = '';
-      }
-      else {
-        $expected = ' name="' . $expected_value . '"';
-      }
-
-      self::assertToString(
-        $expected,
-        new Attributes(['name' => $value]),
-        var_export($value, TRUE));
+      self::assertAttributeValue($value, $expected_value);
     }
   }
 
@@ -170,6 +131,57 @@ class AttributesExplicitTest extends UnitTestBase {
     self::assertToString(
       ' name=""',
       $attributes);
+  }
+
+  /**
+   * @param mixed $value
+   *   Raw value to construct the Attributes object.
+   * @param string $expected_output
+   *   Expected attribute value output.
+   */
+  private static function assertAttributeValue($value, $expected_output) {
+
+    if (TRUE === $expected_output) {
+      $expected = ' name';
+    }
+    elseif (NULL === $expected_output) {
+      $expected = '';
+    }
+    else {
+      $expected = ' name="' . $expected_output . '"';
+    }
+
+    $attributes = new Attributes(['name' => $value]);
+    self::assertToString(
+      $expected,
+      $attributes,
+      var_export($value, TRUE));
+
+    $attributes = new Attributes();
+    $attributes['name'] = $value;
+    self::assertToString(
+      $expected,
+      $attributes,
+      var_export($value, TRUE) . ' via offsetSet()');
+
+    $attributes = new Attributes();
+    $attributes->setAttribute('name', $value);
+    self::assertToString(
+      $expected,
+      $attributes,
+      var_export($value, TRUE) . ' via setAttribute()');
+
+    if (is_array($value)) {
+      $attributes = new Attributes();
+      foreach ($value as $v) {
+        $attributes->append('name', $v);
+
+      }
+      self::assertToString(
+        $expected,
+        $attributes,
+        var_export($value, TRUE) . ' via append()');
+    }
   }
 
   /**
