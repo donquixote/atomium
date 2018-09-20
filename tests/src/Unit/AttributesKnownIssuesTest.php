@@ -16,7 +16,7 @@ class AttributesKnownIssuesTest extends UnitTestBase {
     $attributes = new Attributes(['class' => ['sidebar']]);
     $attributes['class'][] = 'other-class';
     $attributes['id'][] = 'example-id';
-    // The additional values are not added.
+    // The additional values are not added, but an empty attribute is created.
     self::assertSame(
       ' class="sidebar" id=""',
       $attributes->__toString());
