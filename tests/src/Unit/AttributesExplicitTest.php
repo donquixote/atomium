@@ -357,9 +357,6 @@ class AttributesExplicitTest extends UnitTestBase {
    */
   private static function formatAtributesString($string) {
     $parts = explode(' ', $string);
-    for ($i = count($parts) - 2; $i > 0; --$i) {
-      # $parts[$i] .= '"';
-    }
     $out = "''";
     foreach ($parts as $part) {
       $out .= "\n . " . var_export($part, TRUE);
