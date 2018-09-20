@@ -125,9 +125,9 @@ class AttributesExplicitTest extends UnitTestBase {
       [3, '3'],
       [[1, 2, 3], '1 2 3'],
       [[1, [2, [3]]], '1 2 3'],
-      [M_PI, (string) M_PI],
-      [[M_PI], (string) M_PI],
-      [[M_PI, [M_PI + 1]], M_PI . ' ' . (M_PI + 1)],
+      [1.7, '1.7'],
+      [[1.7], '1.7'],
+      [[1.7, [1.9]], '1.7 1.9'],
       [['a', 'b', 'c'], 'a b c'],
       [['a ', ' b ', ' c ', ' d ', ' e'], 'a b c d e'],
       [['a', ['b', ['c']]], 'a b c'],
@@ -274,8 +274,8 @@ class AttributesExplicitTest extends UnitTestBase {
  bool-false-array=""
  bool-true
  bool-true-array="1"
- float-array="0.31830988618379 0.63661977236758 3.1415926535898 1.5707963267949 0.78539816339745"
- float-nested-array="0.31830988618379 0.63661977236758 3.1415926535898 1.5707963267949 0.78539816339745"
+ float-array="1.1 1.2 1.3 1.4 1.5"
+ float-nested-array="1.1 1.2 1.3 1.4 1.5"
  float="3.1415926535898"
  integer-array="0 1 2 3 4 5"
  integer-nested-array="0 1 2 3 4 5"
