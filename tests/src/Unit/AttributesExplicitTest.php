@@ -121,6 +121,8 @@ class AttributesExplicitTest extends UnitTestBase {
       [[TRUE], '1'],
       [[TRUE, TRUE], '1'],
       [[FALSE, FALSE], ''],
+      [['', ''], ''],
+      [['x', 5, 5.1, TRUE, FALSE, ''], 'x 5 5.1 1'],
       [0, '0'],
       [3, '3'],
       [[1, 2, 3], '1 2 3'],
