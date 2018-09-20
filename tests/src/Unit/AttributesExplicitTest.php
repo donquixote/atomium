@@ -247,10 +247,10 @@ class AttributesExplicitTest extends UnitTestBase {
       [
         'bool-true' => TRUE,
         'bool-false' => FALSE,
-        'bool-true-array' => array_fill(0, 3, TRUE),
-        'bool-false-array' => array_fill(0, 3, FALSE),
+        'bool-true-array' => [TRUE, TRUE, TRUE],
+        'bool-false-array' => [FALSE, FALSE, FALSE],
         'integer' => 0,
-        'integer-array' => range(0, 5),
+        'integer-array' => [0, 1, 2, 3, 4, 5],
         'integer-nested-array' => [0, [1, [2, [3, [4, [5]]]]]],
         'float' => M_PI,
         'float-array' => [1.1, 1.2, 1.3, 1.4, 1.5],
