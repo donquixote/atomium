@@ -1,0 +1,3869 @@
+'order of attributes':
+    '(new *)':
+        '->__toString()':
+            ':': ' aaa class="sidebar" x="y" zzz'
+        '->toArray()':
+            ':':
+                zzz:
+                    - true
+                x:
+                    - 'y'
+                aaa: {  }
+                class:
+                    - sidebar
+    '->setAttributes(*)':
+        '->__toString()':
+            ':': ' aaa class="sidebar" x="y" zzz'
+        '->toArray()':
+            ':':
+                zzz:
+                    - true
+                x:
+                    - 'y'
+                aaa: {  }
+                class:
+                    - sidebar
+    '->setAttribute(*, *) x':
+        '->__toString()':
+            ':': ' aaa class="sidebar" x="y" zzz'
+        '->toArray()':
+            ':':
+                zzz:
+                    - true
+                x:
+                    - 'y'
+                aaa: {  }
+                class:
+                    - sidebar
+    '[*] = *':
+        '->__toString()':
+            ':': ' aaa class="sidebar" x="y" zzz'
+        '->toArray()':
+            ':':
+                zzz:
+                    - true
+                x:
+                    - 'y'
+                aaa: {  }
+                class:
+                    - sidebar
+    '->append(*, *) x':
+        '->__toString()':
+            ':': ' aaa class="sidebar" x="y" zzz'
+        '->toArray()':
+            ':':
+                zzz:
+                    - true
+                x:
+                    - 'y'
+                aaa: {  }
+                class:
+                    - sidebar
+    '->append(*, *) xx':
+        '->__toString()':
+            ':': ' class="sidebar"'
+        '->toArray()':
+            ':':
+                class:
+                    - sidebar
+'order of values':
+    '(new *)':
+        '->__toString()':
+            ':': ' class="a b z" name="z b a"'
+        '->toArray()':
+            ':':
+                class:
+                    - z
+                    - b
+                    - a
+                name:
+                    - z
+                    - b
+                    - a
+    '->setAttributes(*)':
+        '->__toString()':
+            ':': ' class="a b z" name="z b a"'
+        '->toArray()':
+            ':':
+                class:
+                    - z
+                    - b
+                    - a
+                name:
+                    - z
+                    - b
+                    - a
+    '->setAttribute(*, *) x':
+        '->__toString()':
+            ':': ' class="a b z" name="z b a"'
+        '->toArray()':
+            ':':
+                class:
+                    - z
+                    - b
+                    - a
+                name:
+                    - z
+                    - b
+                    - a
+    '[*] = *':
+        '->__toString()':
+            ':': ' class="b a z" name="z b a"'
+        '->toArray()':
+            ':':
+                class:
+                    - z
+                    - 'b a'
+                name:
+                    - z
+                    - 'b a'
+    '->append(*, *) x':
+        '->__toString()':
+            ':': ' class="a b z" name="z b a"'
+        '->toArray()':
+            ':':
+                class:
+                    - z
+                    - b
+                    - a
+                name:
+                    - z
+                    - b
+                    - a
+    '->append(*, *) xx':
+        '->__toString()':
+            ':': ' class="a b z" name="z b a"'
+        '->toArray()':
+            ':':
+                class:
+                    - z
+                    - b
+                    - a
+                name:
+                    - z
+                    - b
+                    - a
+'unusual values':
+    '''value''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''value ''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 'value '
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    ''' value''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - ' value'
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''  value  ''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '  value  '
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="value"'
+            '->toArray()':
+                ':':
+                    value:
+                        - value
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''va l  ue''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="va l ue"'
+            '->toArray()':
+                ':':
+                    value:
+                        - va
+                        - l
+                        - ue
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="va l ue"'
+            '->toArray()':
+                ':':
+                    value:
+                        - va
+                        - l
+                        - ue
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="va l ue"'
+            '->toArray()':
+                ':':
+                    value:
+                        - va
+                        - l
+                        - ue
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="va l  ue"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 'va l  ue'
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="va l ue"'
+            '->toArray()':
+                ':':
+                    value:
+                        - va
+                        - l
+                        - ue
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''mm mm''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="mm"'
+            '->toArray()':
+                ':':
+                    value:
+                        - mm
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="mm"'
+            '->toArray()':
+                ':':
+                    value:
+                        - mm
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="mm"'
+            '->toArray()':
+                ':':
+                    value:
+                        - mm
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="mm mm"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 'mm mm'
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="mm"'
+            '->toArray()':
+                ':':
+                    value:
+                        - mm
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''val$u"e''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="val$u&quot;e"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 'val$u"e'
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="val$u&quot;e"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 'val$u"e'
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="val$u&quot;e"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 'val$u"e'
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="val$u&quot;e"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 'val$u"e'
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="val$u&quot;e"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 'val$u"e'
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '[*] = *':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    ''' ''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '[*] = *':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value:
+                        - ' '
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''  ''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '[*] = *':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value:
+                        - '  '
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    'true':
+        '(new *)':
+            '->__toString()':
+                ':': ' value'
+            '->toArray()':
+                ':':
+                    value:
+                        - true
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value'
+            '->toArray()':
+                ':':
+                    value:
+                        - true
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value'
+            '->toArray()':
+                ':':
+                    value:
+                        - true
+        '[*] = *':
+            '->__toString()':
+                ':': ' value'
+            '->toArray()':
+                ':':
+                    value:
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value'
+            '->toArray()':
+                ':':
+                    value:
+                        - true
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    'false':
+        '(new *)':
+            '->__toString()':
+                ':': ' value'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '[*] = *':
+            '->__toString()':
+                ':': ' value'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    "array (\n  0 => true,\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value'
+            '->toArray()':
+                ':':
+                    value:
+                        - true
+    "array (\n  0 => true,\n  1 => true,\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value'
+            '->toArray()':
+                ':':
+                    value:
+                        - true
+    "array (\n  0 => false,\n  1 => false,\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '[*] = *':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value'
+            '->toArray()':
+                ':':
+                    value: {  }
+    "array (\n  0 => '',\n  1 => '',\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '[*] = *':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+    "array (\n  0 => 'x',\n  1 => 5,\n  2 => 5.1,\n  3 => true,\n  4 => false,\n  5 => '',\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="x 5 5.1 1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - x
+                        - '5'
+                        - '5.1'
+                        - '1'
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="x 5 5.1 1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - x
+                        - '5'
+                        - '5.1'
+                        - '1'
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="x 5 5.1 1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - x
+                        - '5'
+                        - '5.1'
+                        - '1'
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="x 5 5.1 1 "'
+            '->toArray()':
+                ':':
+                    value:
+                        - x
+                        - 5
+                        - 5.1
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="x 5 5.1 1"'
+            '->toArray()':
+                ':':
+                    value:
+                        - x
+                        - '5'
+                        - '5.1'
+                        - '1'
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value=""'
+            '->toArray()':
+                ':':
+                    value: {  }
+    0:
+        '(new *)':
+            '->__toString()':
+                ':': ' value="0"'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="0"'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="0"'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="0"'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="0"'
+            '->toArray()':
+                ':':
+                    value: {  }
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    3:
+        '(new *)':
+            '->__toString()':
+                ':': ' value="3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '3'
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '3'
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '3'
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 3
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '3'
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    "array (\n  0 => 1,\n  1 => 2,\n  2 => 3,\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="1 2 3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+                        - '2'
+                        - '3'
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="1 2 3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+                        - '2'
+                        - '3'
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="1 2 3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+                        - '2'
+                        - '3'
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="1 2 3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 1
+                        - 2
+                        - 3
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="1 2 3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+                        - '2'
+                        - '3'
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="1 2 3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+                        - '2'
+                        - '3'
+    "array (\n  0 => 1,\n  1 => \n  array (\n    0 => 2,\n    1 => \n    array (\n      0 => 3,\n    ),\n  ),\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="1 2 3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+                        - '2'
+                        - '3'
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="1 2 3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+                        - '2'
+                        - '3'
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="1 2 3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+                        - '2'
+                        - '3'
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 3
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="1 2 3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+                        - '2'
+                        - '3'
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="1 2 3"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1'
+                        - '2'
+                        - '3'
+    '1.7':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="1.7"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="1.7"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="1.7"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="1.7"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 1.7
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="1.7"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    "array (\n  0 => 1.7,\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="1.7"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="1.7"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="1.7"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="1.7"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 1.7
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="1.7"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="1.7"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+    "array (\n  0 => 1.7,\n  1 => \n  array (\n    0 => 1.9,\n  ),\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="1.7 1.9"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+                        - '1.9'
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="1.7 1.9"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+                        - '1.9'
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="1.7 1.9"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+                        - '1.9'
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="1.9"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 1.9
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="1.7 1.9"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+                        - '1.9'
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="1.7 1.9"'
+            '->toArray()':
+                ':':
+                    value:
+                        - '1.7'
+                        - '1.9'
+    "array (\n  0 => 'a',\n  1 => 'b',\n  2 => 'c',\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a b c"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a b c"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a b c"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a b c"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a b c"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a b c"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+    "array (\n  0 => 'a ',\n  1 => ' b ',\n  2 => ' c ',\n  3 => ' d ',\n  4 => ' e',\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a b c d e"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - d
+                        - e
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a b c d e"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - d
+                        - e
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a b c d e"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - d
+                        - e
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a b c d e"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 'a '
+                        - ' b '
+                        - ' c '
+                        - ' d '
+                        - ' e'
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a b c d e"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - d
+                        - e
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a b c d e"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - d
+                        - e
+    "array (\n  0 => 'a',\n  1 => \n  array (\n    0 => 'b',\n    1 => \n    array (\n      0 => 'c',\n    ),\n  ),\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a b c"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a b c"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a b c"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="c"'
+            '->toArray()':
+                ':':
+                    value:
+                        - c
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a b c"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a b c"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+'unusual values enclosed':
+    '''value''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+    '''value ''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - 'value '
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+    ''' value''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - ' value'
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+    '''  value  ''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '  value  '
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a value z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - value
+                        - z
+    '''va l  ue''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a va l ue z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - va
+                        - l
+                        - ue
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a va l ue z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - va
+                        - l
+                        - ue
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a va l ue z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - va
+                        - l
+                        - ue
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a va l  ue z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - 'va l  ue'
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a va l ue z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - va
+                        - l
+                        - ue
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a va l ue z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - va
+                        - l
+                        - ue
+                        - z
+    '''mm mm''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a mm z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - mm
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a mm z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - mm
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a mm z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - mm
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a mm mm z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - 'mm mm'
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a mm z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - mm
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a mm z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - mm
+                        - z
+    '''val$u"e''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a val$u&quot;e z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - 'val$u"e'
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a val$u&quot;e z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - 'val$u"e'
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a val$u&quot;e z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - 'val$u"e'
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a val$u&quot;e z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - 'val$u"e'
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a val$u&quot;e z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - 'val$u"e'
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a val$u&quot;e z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - 'val$u"e'
+                        - z
+    '''''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a  z"'
+            '->toArray()':
+                ':':
+                    value:
+                        0: a
+                        2: z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+    ''' ''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a  z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - ' '
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+    '''  ''':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a  z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '  '
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+    'true':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - true
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - true
+                        - z
+    'false':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a  z"'
+            '->toArray()':
+                ':':
+                    value:
+                        0: a
+                        2: z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value=" z"'
+            '->toArray()':
+                ':':
+                    value:
+                        1: z
+    "array (\n  0 => true,\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - true
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+    "array (\n  0 => true,\n  1 => true,\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - true
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - z
+    "array (\n  0 => false,\n  1 => false,\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value=" z"'
+            '->toArray()':
+                ':':
+                    value:
+                        1: z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+    "array (\n  0 => '',\n  1 => '',\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value=" z"'
+            '->toArray()':
+                ':':
+                    value:
+                        1: z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - z
+    "array (\n  0 => 'x',\n  1 => 5,\n  2 => 5.1,\n  3 => true,\n  4 => false,\n  5 => '',\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a x 5 5.1 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - x
+                        - '5'
+                        - '5.1'
+                        - '1'
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a x 5 5.1 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - x
+                        - '5'
+                        - '5.1'
+                        - '1'
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a x 5 5.1 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - x
+                        - '5'
+                        - '5.1'
+                        - '1'
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="x 5 z 1 "'
+            '->toArray()':
+                ':':
+                    value:
+                        - x
+                        - 5
+                        - z
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a x 5 5.1 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - x
+                        - '5'
+                        - '5.1'
+                        - '1'
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a x 5 5.1 1 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - x
+                        - '5'
+                        - '5.1'
+                        - '1'
+                        - z
+    0:
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a 0 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        0: a
+                        2: z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a 0 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        0: a
+                        2: z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a 0 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        0: a
+                        2: z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a 0 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        0: a
+                        2: z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a 0 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        0: a
+                        2: z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a 0 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        0: a
+                        2: z
+    3:
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '3'
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '3'
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '3'
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - 3
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '3'
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '3'
+                        - z
+    "array (\n  0 => 1,\n  1 => 2,\n  2 => 3,\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a 1 2 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - '2'
+                        - '3'
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a 1 2 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - '2'
+                        - '3'
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1 2 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - '2'
+                        - '3'
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="1 2 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 1
+                        - 2
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1 2 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - '2'
+                        - '3'
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a 1 2 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - '2'
+                        - '3'
+                        - z
+    "array (\n  0 => 1,\n  1 => \n  array (\n    0 => 2,\n    1 => \n    array (\n      0 => 3,\n    ),\n  ),\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a 1 2 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - '2'
+                        - '3'
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a 1 2 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - '2'
+                        - '3'
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1 2 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - '2'
+                        - '3'
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 3
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1 2 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - '2'
+                        - '3'
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a 1 2 3 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1'
+                        - '2'
+                        - '3'
+                        - z
+    '1.7':
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a 1.7 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a 1.7 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1.7 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a 1.7 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - 1.7
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1.7 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a 1.7 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - z
+    "array (\n  0 => 1.7,\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a 1.7 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a 1.7 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1.7 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="1.7 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 1.7
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1.7 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a 1.7 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - z
+    "array (\n  0 => 1.7,\n  1 => \n  array (\n    0 => 1.9,\n  ),\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a 1.7 1.9 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - '1.9'
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a 1.7 1.9 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - '1.9'
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1.7 1.9 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - '1.9'
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="1.9 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 1.9
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a 1.7 1.9 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - '1.9'
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a 1.7 1.9 z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - '1.7'
+                        - '1.9'
+                        - z
+    "array (\n  0 => 'a',\n  1 => 'b',\n  2 => 'c',\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a b c z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a b c z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a b c z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a b z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a b c z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a b c z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - z
+    "array (\n  0 => 'a ',\n  1 => ' b ',\n  2 => ' c ',\n  3 => ' d ',\n  4 => ' e',\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a b c d e z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - d
+                        - e
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a b c d e z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - d
+                        - e
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a b c d e z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - d
+                        - e
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="a b z d e"'
+            '->toArray()':
+                ':':
+                    value:
+                        - 'a '
+                        - ' b '
+                        - z
+                        - ' d '
+                        - ' e'
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a b c d e z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - d
+                        - e
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a b c d e z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - d
+                        - e
+                        - z
+    "array (\n  0 => 'a',\n  1 => \n  array (\n    0 => 'b',\n    1 => \n    array (\n      0 => 'c',\n    ),\n  ),\n)":
+        '(new *)':
+            '->__toString()':
+                ':': ' value="a b c z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - z
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' value="a b c z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - z
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' value="a b c z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - z
+        '[*] = *':
+            '->__toString()':
+                ':': ' value="c z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - c
+                        - z
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' value="a b c z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - z
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ' value="a b c z"'
+            '->toArray()':
+                ':':
+                    value:
+                        - a
+                        - b
+                        - c
+                        - z
+'broken names':
+    '''name ''':
+        '(new *)':
+            '->__toString()':
+                ':': ' name ="value"'
+            '->toArray()':
+                ':':
+                    'name ':
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' name ="value"'
+            '->toArray()':
+                ':':
+                    'name ':
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' name ="value"'
+            '->toArray()':
+                ':':
+                    'name ':
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': ' name ="value"'
+            '->toArray()':
+                ':':
+                    'name ':
+                        - value
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' name ="value"'
+            '->toArray()':
+                ':':
+                    'name ':
+                        - value
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''name  ''':
+        '(new *)':
+            '->__toString()':
+                ':': ' name  ="value"'
+            '->toArray()':
+                ':':
+                    'name  ':
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' name  ="value"'
+            '->toArray()':
+                ':':
+                    'name  ':
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' name  ="value"'
+            '->toArray()':
+                ':':
+                    'name  ':
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': ' name  ="value"'
+            '->toArray()':
+                ':':
+                    'name  ':
+                        - value
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' name  ="value"'
+            '->toArray()':
+                ':':
+                    'name  ':
+                        - value
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    ''' name''':
+        '(new *)':
+            '->__toString()':
+                ':': '  name="value"'
+            '->toArray()':
+                ':':
+                    ' name':
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': '  name="value"'
+            '->toArray()':
+                ':':
+                    ' name':
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': '  name="value"'
+            '->toArray()':
+                ':':
+                    ' name':
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': '  name="value"'
+            '->toArray()':
+                ':':
+                    ' name':
+                        - value
+        '->append(*, *) x':
+            '->__toString()':
+                ':': '  name="value"'
+            '->toArray()':
+                ':':
+                    ' name':
+                        - value
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''  name''':
+        '(new *)':
+            '->__toString()':
+                ':': '   name="value"'
+            '->toArray()':
+                ':':
+                    '  name':
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': '   name="value"'
+            '->toArray()':
+                ':':
+                    '  name':
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': '   name="value"'
+            '->toArray()':
+                ':':
+                    '  name':
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': '   name="value"'
+            '->toArray()':
+                ':':
+                    '  name':
+                        - value
+        '->append(*, *) x':
+            '->__toString()':
+                ':': '   name="value"'
+            '->toArray()':
+                ':':
+                    '  name':
+                        - value
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''na m  e''':
+        '(new *)':
+            '->__toString()':
+                ':': ' na m  e="value"'
+            '->toArray()':
+                ':':
+                    'na m  e':
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' na m  e="value"'
+            '->toArray()':
+                ':':
+                    'na m  e':
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' na m  e="value"'
+            '->toArray()':
+                ':':
+                    'na m  e':
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': ' na m  e="value"'
+            '->toArray()':
+                ':':
+                    'na m  e':
+                        - value
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' na m  e="value"'
+            '->toArray()':
+                ':':
+                    'na m  e':
+                        - value
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''nam$e''':
+        '(new *)':
+            '->__toString()':
+                ':': ' nam$e="value"'
+            '->toArray()':
+                ':':
+                    nam$e:
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' nam$e="value"'
+            '->toArray()':
+                ':':
+                    nam$e:
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' nam$e="value"'
+            '->toArray()':
+                ':':
+                    nam$e:
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': ' nam$e="value"'
+            '->toArray()':
+                ':':
+                    nam$e:
+                        - value
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' nam$e="value"'
+            '->toArray()':
+                ':':
+                    nam$e:
+                        - value
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''nam"e''':
+        '(new *)':
+            '->__toString()':
+                ':': ' nam"e="value"'
+            '->toArray()':
+                ':':
+                    'nam"e':
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' nam"e="value"'
+            '->toArray()':
+                ':':
+                    'nam"e':
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' nam"e="value"'
+            '->toArray()':
+                ':':
+                    'nam"e':
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': ' nam"e="value"'
+            '->toArray()':
+                ':':
+                    'nam"e':
+                        - value
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' nam"e="value"'
+            '->toArray()':
+                ':':
+                    'nam"e':
+                        - value
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''''':
+        '(new *)':
+            '->__toString()':
+                ':': ' ="value"'
+            '->toArray()':
+                ':':
+                    '':
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' ="value"'
+            '->toArray()':
+                ':':
+                    '':
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' ="value"'
+            '->toArray()':
+                ':':
+                    '':
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': ' ="value"'
+            '->toArray()':
+                ':':
+                    '':
+                        - value
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    ''' ''':
+        '(new *)':
+            '->__toString()':
+                ':': '  ="value"'
+            '->toArray()':
+                ':':
+                    ' ':
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': '  ="value"'
+            '->toArray()':
+                ':':
+                    ' ':
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': '  ="value"'
+            '->toArray()':
+                ':':
+                    ' ':
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': '  ="value"'
+            '->toArray()':
+                ':':
+                    ' ':
+                        - value
+        '->append(*, *) x':
+            '->__toString()':
+                ':': '  ="value"'
+            '->toArray()':
+                ':':
+                    ' ':
+                        - value
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''  ''':
+        '(new *)':
+            '->__toString()':
+                ':': '   ="value"'
+            '->toArray()':
+                ':':
+                    '  ':
+                        - value
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': '   ="value"'
+            '->toArray()':
+                ':':
+                    '  ':
+                        - value
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': '   ="value"'
+            '->toArray()':
+                ':':
+                    '  ':
+                        - value
+        '[*] = *':
+            '->__toString()':
+                ':': '   ="value"'
+            '->toArray()':
+                ':':
+                    '  ':
+                        - value
+        '->append(*, *) x':
+            '->__toString()':
+                ':': '   ="value"'
+            '->toArray()':
+                ':':
+                    '  ':
+                        - value
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+'broken names enclosed':
+    '''name ''':
+        '(new *)':
+            '->__toString()':
+                ':': ' a name ="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'name ':
+                        - value
+                    z:
+                        - true
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' a name ="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'name ':
+                        - value
+                    z:
+                        - true
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' a name ="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'name ':
+                        - value
+                    z:
+                        - true
+        '[*] = *':
+            '->__toString()':
+                ':': ' a name ="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'name ':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' a name ="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'name ':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''name  ''':
+        '(new *)':
+            '->__toString()':
+                ':': ' a name  ="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'name  ':
+                        - value
+                    z:
+                        - true
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' a name  ="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'name  ':
+                        - value
+                    z:
+                        - true
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' a name  ="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'name  ':
+                        - value
+                    z:
+                        - true
+        '[*] = *':
+            '->__toString()':
+                ':': ' a name  ="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'name  ':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' a name  ="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'name  ':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    ''' name''':
+        '(new *)':
+            '->__toString()':
+                ':': '  name="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    ' name':
+                        - value
+                    z:
+                        - true
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': '  name="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    ' name':
+                        - value
+                    z:
+                        - true
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': '  name="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    ' name':
+                        - value
+                    z:
+                        - true
+        '[*] = *':
+            '->__toString()':
+                ':': '  name="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    ' name':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': '  name="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    ' name':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''  name''':
+        '(new *)':
+            '->__toString()':
+                ':': '   name="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '  name':
+                        - value
+                    z:
+                        - true
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': '   name="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '  name':
+                        - value
+                    z:
+                        - true
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': '   name="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '  name':
+                        - value
+                    z:
+                        - true
+        '[*] = *':
+            '->__toString()':
+                ':': '   name="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '  name':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': '   name="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '  name':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''na m  e''':
+        '(new *)':
+            '->__toString()':
+                ':': ' a na m  e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'na m  e':
+                        - value
+                    z:
+                        - true
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' a na m  e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'na m  e':
+                        - value
+                    z:
+                        - true
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' a na m  e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'na m  e':
+                        - value
+                    z:
+                        - true
+        '[*] = *':
+            '->__toString()':
+                ':': ' a na m  e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'na m  e':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' a na m  e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'na m  e':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''nam$e''':
+        '(new *)':
+            '->__toString()':
+                ':': ' a nam$e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    nam$e:
+                        - value
+                    z:
+                        - true
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' a nam$e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    nam$e:
+                        - value
+                    z:
+                        - true
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' a nam$e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    nam$e:
+                        - value
+                    z:
+                        - true
+        '[*] = *':
+            '->__toString()':
+                ':': ' a nam$e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    nam$e:
+                        - value
+                    z:
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' a nam$e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    nam$e:
+                        - value
+                    z:
+                        - true
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''nam"e''':
+        '(new *)':
+            '->__toString()':
+                ':': ' a nam"e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'nam"e':
+                        - value
+                    z:
+                        - true
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' a nam"e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'nam"e':
+                        - value
+                    z:
+                        - true
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' a nam"e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'nam"e':
+                        - value
+                    z:
+                        - true
+        '[*] = *':
+            '->__toString()':
+                ':': ' a nam"e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'nam"e':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' a nam"e="value" z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    'nam"e':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''''':
+        '(new *)':
+            '->__toString()':
+                ':': ' ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '':
+                        - value
+                    z:
+                        - true
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': ' ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '':
+                        - value
+                    z:
+                        - true
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': ' ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '':
+                        - value
+                    z:
+                        - true
+        '[*] = *':
+            '->__toString()':
+                ':': ' ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': ' a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    z:
+                        - true
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    ''' ''':
+        '(new *)':
+            '->__toString()':
+                ':': '  ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    ' ':
+                        - value
+                    z:
+                        - true
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': '  ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    ' ':
+                        - value
+                    z:
+                        - true
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': '  ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    ' ':
+                        - value
+                    z:
+                        - true
+        '[*] = *':
+            '->__toString()':
+                ':': '  ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    ' ':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': '  ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    ' ':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
+    '''  ''':
+        '(new *)':
+            '->__toString()':
+                ':': '   ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '  ':
+                        - value
+                    z:
+                        - true
+        '->setAttributes(*)':
+            '->__toString()':
+                ':': '   ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '  ':
+                        - value
+                    z:
+                        - true
+        '->setAttribute(*, *) x':
+            '->__toString()':
+                ':': '   ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '  ':
+                        - value
+                    z:
+                        - true
+        '[*] = *':
+            '->__toString()':
+                ':': '   ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '  ':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) x':
+            '->__toString()':
+                ':': '   ="value" a z'
+            '->toArray()':
+                ':':
+                    a:
+                        - true
+                    '  ':
+                        - value
+                    z:
+                        - true
+        '->append(*, *) xx':
+            '->__toString()':
+                ':': ''
+            '->toArray()':
+                ':': {  }
