@@ -151,37 +151,35 @@ class AttributesExplicitTest extends UnitTestBase {
       $expected = ' name="' . $expected_output . '"';
     }
 
-    $attributes = new Attributes(['name' => $value]);
+    self::assertAttribute('name', $value, $expected);
+  }
+
+  /**
+   * @param string $name
+   * @param mixed $value
+   * @param string $expected
+   */
+  private static function assertAttribute($name, $value, $expected) {
+
+    $attributes = new Attributes([$name => $value]);
     self::assertToString(
       $expected,
       $attributes,
       var_export($value, TRUE));
 
     $attributes = new Attributes();
-    $attributes['name'] = $value;
-    self::assertToString(
-      $expected,
-      $attributes,
-      var_export($value, TRUE) . ' via offsetSet()');
-
-    $attributes = new Attributes();
-    $attributes->setAttribute('name', $value);
+    $attributes->setAttribute($name, $value);
     self::assertToString(
       $expected,
       $attributes,
       var_export($value, TRUE) . ' via setAttribute()');
 
-    if (is_array($value)) {
-      $attributes = new Attributes();
-      foreach ($value as $v) {
-        $attributes->append('name', $v);
-
-      }
-      self::assertToString(
-        $expected,
-        $attributes,
-        var_export($value, TRUE) . ' via append()');
-    }
+    $attributes = new Attributes();
+    $attributes->append($name, $value);
+    self::assertToString(
+      $expected,
+      $attributes,
+      var_export($value, TRUE) . ' via append()');
   }
 
   /**
