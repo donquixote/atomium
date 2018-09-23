@@ -1,0 +1,143 @@
+'"value"':
+    name:
+        - a
+        - value
+        - z
+'"value "':
+    name:
+        - a
+        - value
+        - z
+'" value"':
+    name:
+        - a
+        - value
+        - z
+'"  value  "':
+    name:
+        - a
+        - value
+        - z
+'"va l  ue"':
+    name:
+        - a
+        - va
+        - l
+        - ue
+        - z
+'"mm mm"':
+    name:
+        - a
+        - mm
+        - z
+'"val$u\"e"':
+    name:
+        - a
+        - 'val$u"e'
+        - z
+'""':
+    name:
+        - a
+        - z
+'" "':
+    name:
+        - a
+        - z
+'"  "':
+    name:
+        - a
+        - z
+'true':
+    name:
+        - a
+        - '1'
+        - z
+'false':
+    name:
+        - a
+        - z
+'[true]':
+    name:
+        - a
+        - '1'
+        - z
+'[true,true]':
+    name:
+        - a
+        - '1'
+        - z
+'[false,false]':
+    name:
+        - a
+        - z
+'["",""]':
+    name:
+        - a
+        - z
+'["x",5,5.1,true,false,""]':
+    name:
+        - a
+        - x
+        - '5'
+        - '5.1'
+        - '1'
+        - z
+0:
+    name:
+        0: a
+        2: z
+3:
+    name:
+        - a
+        - '3'
+        - z
+'[1,2,3]':
+    name:
+        - a
+        - '1'
+        - '2'
+        - '3'
+        - z
+'[1,[2,[3]]]':
+    name:
+        - a
+        - '1'
+        - '2'
+        - '3'
+        - z
+'1.7':
+    name:
+        - a
+        - '1.7'
+        - z
+'[1.7]':
+    name:
+        - a
+        - '1.7'
+        - z
+'[1.7,[1.9]]':
+    name:
+        - a
+        - '1.7'
+        - '1.9'
+        - z
+'["a","b","c"]':
+    name:
+        - a
+        - b
+        - c
+        - z
+'["a "," b "," c "," d "," e"]':
+    name:
+        - a
+        - b
+        - c
+        - d
+        - e
+        - z
+'["a",["b",["c"]]]':
+    name:
+        - a
+        - b
+        - c
+        - z
