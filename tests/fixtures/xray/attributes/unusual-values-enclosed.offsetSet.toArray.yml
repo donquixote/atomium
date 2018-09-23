@@ -35,8 +35,8 @@
         - z
 '""':
     name:
-        0: a
-        2: z
+        - a
+        - z
 '" "':
     name:
         - a
@@ -54,8 +54,8 @@
         - z
 'false':
     name:
-        0: a
-        2: z
+        - a
+        - z
 '[true]':
     name:
         - a
@@ -68,24 +68,24 @@
         - z
 '[false,false]':
     name:
-        0: a
-        2: z
+        - a
+        - z
 '["",""]':
     name:
-        0: a
-        2: z
+        - a
+        - z
 '["x",5,5.1,true,false,""]':
     name:
-        0: a
-        1: x
-        2: 5
-        3: 5.1
-        4: true
-        6: z
+        - a
+        - x
+        - 5
+        - 5.1
+        - true
+        - z
 0:
     name:
-        0: a
-        2: z
+        - a
+        - z
 3:
     name:
         - a

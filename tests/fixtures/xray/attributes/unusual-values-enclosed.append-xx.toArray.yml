@@ -53,7 +53,7 @@
         - z
 'false':
     name:
-        1: z
+        - z
 '[true]':
     name:
         - a
@@ -82,8 +82,8 @@
         - z
 0:
     name:
-        0: a
-        2: z
+        - a
+        - z
 3:
     name:
         - a
