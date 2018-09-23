@@ -11,13 +11,11 @@
 'true': {  }
 'false': {  }
 '[true]':
-    name:
-        - true
+    name: true
 '[true,true]':
-    name:
-        - true
+    name: true
 '[false,false]':
-    name: {  }
+    name: true
 '["",""]':
     name: {  }
 '["x",5,5.1,true,false,""]':
