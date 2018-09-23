@@ -39,6 +39,55 @@ class AttributesExplicitTest extends UnitTestBase {
   }
 
   /**
+   * Tests Attributes->offsetSet().
+   */
+  public function testOffsetSet() {
+
+    foreach ([
+      [TRUE, TRUE],
+      [[TRUE], '1'],
+      [['a', TRUE, 'z'], 'a 1 z'],
+      [['a', [TRUE], 'z'], '1 z'],
+    ] as $value_and_expected) {
+      list($value, $expected_output) = $value_and_expected;
+
+      if (TRUE === $expected_output) {
+        $expected = ' name';
+      }
+      elseif (NULL === $expected_output) {
+        $expected = '';
+      }
+      else {
+        $expected = ' name="' . $expected_output . '"';
+      }
+
+      self::assertOffsetSetToString(['name' => $value], $expected);
+    }
+  }
+
+  /**
+   * Asserts the behavior of Attributes->offsetSet().
+   *
+   * @param array $values
+   *   Values to pass into attributes via offsetSet().
+   * @param string $expected
+   *   Expected attributes output.
+   */
+  private static function assertOffsetSetToString(array $values, $expected) {
+
+    $attributes = new Attributes();
+    foreach ($values as $k => $v) {
+      /* @see \Drupal\atomium\Attributes::offsetSet() */
+      $attributes[$k] = $v;
+    }
+
+    self::assertToString(
+      $expected,
+      $attributes,
+      json_encode($values));
+  }
+
+  /**
    * Tests unusual attribute values.
    */
   public function testUnusualAttributeValueStrings() {
