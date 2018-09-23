@@ -417,9 +417,9 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
     foreach ($this->getStorage() as $name => $value) {
       if (is_array($value)) {
         $array[$name] = [];
-        foreach ($value as $k => $v) {
+        foreach ($value as $v) {
           if (!empty($v)) {
-            $array[$name][$k] = $v;
+            $array[$name][] = $v;
           }
         }
       }
