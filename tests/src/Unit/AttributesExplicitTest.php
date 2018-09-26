@@ -63,8 +63,8 @@ class AttributesExplicitTest extends UnitTestBase {
       $attributes);
 
     foreach ([
-      [TRUE, [TRUE]],
-      [FALSE, []],
+      [TRUE, TRUE],
+      [FALSE, TRUE],
       [['a', 'b', 'c'], ['a', 'b', 'c']],
       ['cat', ['cat']],
       ['', [], TRUE],
