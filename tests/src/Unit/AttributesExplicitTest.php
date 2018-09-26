@@ -40,6 +40,43 @@ class AttributesExplicitTest extends UnitTestBase {
   }
 
   /**
+   * Tests Attributes->offsetGet() and ->offsetExists().
+   */
+  public function testOffset() {
+
+    foreach ([
+      [TRUE, [TRUE]],
+      [FALSE, []],
+      [['a', 'b', 'c'], ['a', 'b', 'c']],
+      ['cat', ['cat']],
+      ['', [], TRUE],
+      [0, []],
+    ] as $data) {
+      list($value, $expectedOffsetGet, $expectedOffsetExists) = $data
+      + [NULL, NULL, TRUE];
+
+      $attributes = new Attributes(['_name_' => $value]);
+
+      self::assertSame(
+        $expectedOffsetGet,
+        $attributes->offsetGet('_name_'),
+        sprintf(
+          '(new Attributes([\'_name_\' => %s]))->offsetGet(\'_name_\')',
+          var_export($value, TRUE)));
+
+      self::assertSame(
+        $expectedOffsetExists,
+        $attributes->offsetExists('_name_'),
+        sprintf(
+          '(new Attributes([\'_name_\' => %s]))->offsetExists(\'_name_\')',
+          var_export($value, TRUE)));
+    }
+
+    $attributes = new Attributes();
+    self::assertFalse($attributes->offsetExists('_name_'));
+  }
+
+  /**
    * Tests Attributes->append()
    */
   public function testAppend() {
