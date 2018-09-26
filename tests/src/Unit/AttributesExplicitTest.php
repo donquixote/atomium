@@ -3,6 +3,7 @@
 namespace Drupal\Tests\atomium\Unit;
 
 use Drupal\atomium\Attributes;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Tests the Attributes class.
@@ -392,6 +393,25 @@ class AttributesExplicitTest extends UnitTestBase {
     self::assertToStringAdvanced(
       $expected,
       $attributes);
+  }
+
+  /**
+   * Asserts that Attributes->toArray() has the expected value.
+   *
+   * @param array $expected
+   *   Expected return value of toArray().
+   * @param \Drupal\atomium\Attributes $attributes
+   *   The attributes object.
+   * @param string $message
+   *   Message to send to self::assertSame().
+   */
+  private static function assertToArray(array $expected, Attributes $attributes, $message = '') {
+    // Prevent any side effects.
+    $attributes = clone $attributes;
+    self::assertSame(
+      Yaml::dump($expected, 9),
+      Yaml::dump($attributes->toArray(), 9),
+      $message . "\n  ->toArray()");
   }
 
   /**
