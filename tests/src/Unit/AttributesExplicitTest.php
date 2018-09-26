@@ -120,7 +120,7 @@ class AttributesExplicitTest extends UnitTestBase {
     self::assertAppend(
       ' boolean',
       [
-        'boolean' => [TRUE],
+        'boolean' => TRUE,
       ],
       $attributes,
       [
@@ -134,7 +134,7 @@ class AttributesExplicitTest extends UnitTestBase {
     self::assertAppend(
       ' parts',
       [
-        'parts' => [TRUE],
+        'parts' => TRUE,
       ],
       $attributes,
       [
