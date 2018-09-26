@@ -183,6 +183,8 @@ class AttributesExplicitTest extends UnitTestBase {
   }
 
   /**
+   * Asserts what happens to an attribute value with __toString().
+   *
    * @param mixed $value
    *   Raw value to construct the Attributes object.
    * @param string $expected_output
@@ -204,9 +206,14 @@ class AttributesExplicitTest extends UnitTestBase {
   }
 
   /**
+   * Asserts what happens to an attribute name + value with __toString().
+   *
    * @param string $name
+   *   Attribute name.
    * @param mixed $value
+   *   Attribute value.
    * @param string $expected
+   *   Expected output.
    */
   private static function assertAttribute($name, $value, $expected) {
 
