@@ -40,6 +40,103 @@ class AttributesExplicitTest extends UnitTestBase {
   }
 
   /**
+   * Tests Attributes->append()
+   */
+  public function testAppend() {
+
+    $attributes = new Attributes($array = ['boolean' => TRUE]);
+    $message = '(new Attributes(' . json_encode($array) . '))';
+
+    self::assertToString(
+      ' boolean',
+      $attributes);
+
+    self::assertAppend(
+      ' boolean="1 xx"',
+      [
+        'boolean' => [TRUE, 'xx'],
+      ],
+      $attributes,
+      [
+        ['boolean', 'xx'],
+      ],
+      $message);
+
+    self::assertAppend(
+      ' boolean',
+      [
+        'boolean' => [TRUE],
+      ],
+      $attributes,
+      [
+        ['boolean', TRUE],
+      ],
+      $message);
+
+    $attributes = new Attributes($array = ['parts' => ['aa', 'bb']]);
+    $message = '(new Attributes(' . json_encode($array) . '))';
+
+    self::assertAppend(
+      ' parts',
+      [
+        'parts' => [TRUE],
+      ],
+      $attributes,
+      [
+        ['parts', TRUE],
+      ],
+      $message);
+
+    self::assertAppend(
+      ' parts="aa bb 1"',
+      [
+        'parts' => ['aa', 'bb', '1'],
+      ],
+      $attributes,
+      [
+        ['parts', [TRUE]],
+      ],
+      $message);
+
+    self::assertAppend(
+      ' parts="1 zz"',
+      [
+        'parts' => [TRUE, 'zz'],
+      ],
+      $attributes,
+      [
+        ['parts' , 'xx'],
+        ['parts', TRUE],
+        ['parts', ['zz']],
+      ],
+      $message);
+
+    self::assertAppend(
+      ' parts="aa bb uu vv yy zz"',
+      [
+        'parts' => ['aa', 'bb', 'uu', 'vv', 'yy', 'zz'],
+      ],
+      $attributes,
+      [
+        ['parts', 'uu vv'],
+        ['parts', ['yy zz']],
+      ],
+      $message);
+
+    self::assertAppend(
+      ' parts="aa bb zz dd cc"',
+      [
+        'parts' => ['aa', 'bb', 'zz', 'dd', 'cc'],
+      ],
+      $attributes,
+      [
+        ['parts', 'zz'],
+        ['parts', ['dd cc']],
+      ],
+      $message);
+  }
+
+  /**
    * Tests Attributes->offsetSet().
    */
   public function testOffsetSet() {
@@ -64,6 +161,38 @@ class AttributesExplicitTest extends UnitTestBase {
 
       self::assertOffsetSetToString(['name' => $value], $expected);
     }
+  }
+
+  /**
+   * Asserts the behavior of Attributes->append().
+   *
+   * @param string $expected_to_string
+   *   Expected value for ->__toString() after ->append().
+   * @param array $expected_to_array
+   *   Expected value for ->toArray() after ->append().
+   * @param \Drupal\atomium\Attributes $attributes
+   *   Attributes object to start with.
+   * @param array $append_argss
+   *   Arguments for ->append() calls.
+   *   Format: $[] = [$name, $value].
+   * @param string $message
+   *   Message to send to self::assertSame().
+   */
+  private static function assertAppend($expected_to_string, array $expected_to_array, Attributes $attributes, array $append_argss, $message = '') {
+
+    $attributes = clone $attributes;
+
+    foreach ($append_argss as $name_and_args) {
+      list($name, $args) = $name_and_args;
+      $attributes->append($name, $args);
+      $message .= "\n  ->append("
+        . json_encode($name) . ', '
+        . json_encode($args) . ')';
+    }
+
+    self::assertToString($expected_to_string, $attributes, $message);
+
+    self::assertToArray($expected_to_array, $attributes, $message);
   }
 
   /**
