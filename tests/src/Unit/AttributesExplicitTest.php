@@ -206,15 +206,20 @@ class AttributesExplicitTest extends UnitTestBase {
   private static function assertOffsetSetToString(array $values, $expected) {
 
     $attributes = new Attributes();
+    $message = '(new Attributes())';
+
     foreach ($values as $k => $v) {
       /* @see \Drupal\atomium\Attributes::offsetSet() */
       $attributes[$k] = $v;
+      $message .= "\n  ->offsetSet("
+        . json_encode($k) . ', '
+        . json_encode($v) . ')';
     }
 
     self::assertToString(
       $expected,
       $attributes,
-      json_encode($values));
+      $message);
   }
 
   /**
