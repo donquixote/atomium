@@ -405,10 +405,12 @@ class AttributesExplicitTest extends UnitTestBase {
    *   Message to send to self::assertSame().
    */
   private static function assertToString($expected, Attributes $attributes, $message = '') {
+    // Prevent any side effects.
+    $attributes = clone $attributes;
     self::assertSame(
       var_export($expected, TRUE),
       var_export($attributes->__toString(), TRUE),
-      $message);
+      $message . "\n  ->__toString()");
   }
 
   /**
@@ -424,10 +426,12 @@ class AttributesExplicitTest extends UnitTestBase {
    *   Message to send to self::assertSame().
    */
   private static function assertToStringAdvanced($expected, Attributes $attributes, $message = '') {
+    // Prevent any side effects.
+    $attributes = clone $attributes;
     self::assertSame(
       self::formatAtributesString($expected),
       self::formatAtributesString($attributes->__toString()),
-      $message);
+      $message . "\n  ->__toString()");
   }
 
   /**
