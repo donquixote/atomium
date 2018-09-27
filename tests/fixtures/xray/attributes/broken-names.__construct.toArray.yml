@@ -1,30 +1,12 @@
-'"name "':
-    'name ':
-        - value
-'"name  "':
-    'name  ':
-        - value
-'" name"':
-    ' name':
-        - value
-'"  name"':
-    '  name':
-        - value
-'"na m  e"':
-    'na m  e':
-        - value
+'"name "': {  }
+'"name  "': {  }
+'" name"': {  }
+'"  name"': {  }
+'"na m  e"': {  }
 '"nam$e"':
     nam$e:
         - value
-'"nam\"e"':
-    'nam"e':
-        - value
-'""':
-    '':
-        - value
-'" "':
-    ' ':
-        - value
-'"  "':
-    '  ':
-        - value
+'"nam\"e"': {  }
+'""': {  }
+'" "': {  }
+'"  "': {  }

@@ -1,27 +1,17 @@
 '"name "':
     a: true
-    'name ':
-        - value
     z: true
 '"name  "':
     a: true
-    'name  ':
-        - value
     z: true
 '" name"':
     a: true
-    ' name':
-        - value
     z: true
 '"  name"':
     a: true
-    '  name':
-        - value
     z: true
 '"na m  e"':
     a: true
-    'na m  e':
-        - value
     z: true
 '"nam$e"':
     a: true
@@ -30,21 +20,13 @@
     z: true
 '"nam\"e"':
     a: true
-    'nam"e':
-        - value
     z: true
 '""':
     a: true
-    '':
-        - value
     z: true
 '" "':
     a: true
-    ' ':
-        - value
     z: true
 '"  "':
     a: true
-    '  ':
-        - value
     z: true
