@@ -31,7 +31,7 @@ class AttributesExplicitTest extends UnitTestBase {
    */
   public function testValueOrder() {
     self::assertToString(
-      ' class="a b z" name="z b a"',
+      ' class="b a z" name="z b a"',
       new Attributes(
         [
           'class' => ['z', 'b a'],
@@ -169,7 +169,7 @@ class AttributesExplicitTest extends UnitTestBase {
     self::assertAppend(
       ' parts="aa bb uu vv yy zz"',
       [
-        'parts' => ['aa', 'bb', 'uu', 'vv', 'yy', 'zz'],
+        'parts' => ['aa', 'bb', 'uu vv', 'yy zz'],
       ],
       $attributes,
       [
@@ -181,7 +181,7 @@ class AttributesExplicitTest extends UnitTestBase {
     self::assertAppend(
       ' parts="aa bb zz dd cc"',
       [
-        'parts' => ['aa', 'bb', 'zz', 'dd', 'cc'],
+        'parts' => ['aa', 'bb', 'zz', 'dd cc'],
       ],
       $attributes,
       [
@@ -202,12 +202,12 @@ class AttributesExplicitTest extends UnitTestBase {
       [['a', TRUE, 'z'], 'a 1 z'],
       [['a', [TRUE], 'z'], 'a 1 z'],
       ['', ''],
-      [' ', ''],
+      [' ', ' '],
       [[''], ''],
-      [[' '], ''],
-      [['a', ' ', 'z'], 'a  z'],
+      [[' '], ' '],
+      [['a', ' ', 'z'], 'a   z'],
       [[1, ['two', [3]]], '1 two 3'],
-      [' a  b', 'a  b'],
+      [' a  b', ' a  b'],
     ] as $value_and_expected) {
       list($value, $expected_output) = $value_and_expected;
 
@@ -291,15 +291,15 @@ class AttributesExplicitTest extends UnitTestBase {
 
     foreach ([
       'value' => 'value',
-      'value ' => 'value',
-      ' value' => 'value',
-      '  value  ' => 'value',
-      'va l  ue' => 'va l ue',
-      'mm mm' => 'mm',
+      'value ' => 'value ',
+      ' value' => ' value',
+      '  value  ' => '  value  ',
+      'va l  ue' => 'va l  ue',
+      'mm mm' => 'mm mm',
       'val$u"e' => 'val$u&quot;e',
       '' => '',
-      ' ' => '',
-      '  ' => '',
+      ' ' => ' ',
+      '  ' => '  ',
     ] as $value => $expected_value) {
 
       self::assertAttributeValue($value, $expected_value);
@@ -313,15 +313,15 @@ class AttributesExplicitTest extends UnitTestBase {
 
     foreach ([
       'value' => 'a value z',
-      'value ' => 'a value z',
-      ' value' => 'a value z',
-      '  value  ' => 'a value z',
-      'va l  ue' => 'a va l ue z',
-      'mm mm' => 'a mm z',
+      'value ' => 'a value  z',
+      ' value' => 'a  value z',
+      '  value  ' => 'a   value   z',
+      'va l  ue' => 'a va l  ue z',
+      'mm mm' => 'a mm mm z',
       'val$u"e' => 'a val$u&quot;e z',
-      '' => 'a z',
-      ' ' => 'a z',
-      '  ' => 'a z',
+      '' => 'a  z',
+      ' ' => 'a   z',
+      '  ' => 'a    z',
     ] as $value => $expected_value) {
 
       $value = ['a', $value, 'z'];
@@ -342,7 +342,7 @@ class AttributesExplicitTest extends UnitTestBase {
       [[TRUE, TRUE], '1'],
       [[FALSE, FALSE], ''],
       [['', ''], ''],
-      [['x', 5, 5.1, TRUE, FALSE, ''], 'x 5 5.1 1'],
+      [['x', 5, 5.1, TRUE, FALSE, ''], 'x 5 5.1 1 '],
       [0, '0'],
       [3, '3'],
       [[1, 2, 3], '1 2 3'],
@@ -351,7 +351,7 @@ class AttributesExplicitTest extends UnitTestBase {
       [[1.7], '1.7'],
       [[1.7, [1.9]], '1.7 1.9'],
       [['a', 'b', 'c'], 'a b c'],
-      [['a ', ' b ', ' c ', ' d ', ' e'], 'a b c d e'],
+      [['a ', ' b ', ' c ', ' d ', ' e'], 'a   b   c   d   e'],
       [['a', ['b', ['c']]], 'a b c'],
     ] as $value_and_expected) {
 
@@ -421,7 +421,7 @@ class AttributesExplicitTest extends UnitTestBase {
       var_export($value, TRUE));
 
     $attributes = new Attributes();
-    $attributes->setAttribute($name, $value);
+    $attributes->setAttribute($name, $value, FALSE);
     self::assertToString(
       $expected,
       $attributes,
@@ -563,10 +563,10 @@ class AttributesExplicitTest extends UnitTestBase {
  integer-array="0 1 2 3 4 5"
  integer-nested-array="0 1 2 3 4 5"
  integer="0"
- string-array-spaces="a b c d e"
+ string-array-spaces="a   b   c   d   e"
  string-array="a b c d e f"
  string-nested-array="a b c d e f"
- string="a b c d e f"');
+ string=" a b c d e f "');
 
     $attributes = new Attributes(
       [
