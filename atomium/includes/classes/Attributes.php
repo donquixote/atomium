@@ -12,7 +12,10 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
   /**
    * Stores the attribute data.
    *
-   * @var array
+   * @var mixed[]|bool[]|string[][]
+   *   Format:
+   *   $[$attribute_name_safe] = true|false|array(..)
+   *   $[$attribute_name_safe][$value_part] = $value_part :string
    */
   private $storage = array();
 
@@ -26,7 +29,25 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    *   $[$attribute_name_unsafe][] = $value_part :string
    */
   public function __construct(array $attributes = array()) {
-    $this->setAttributes($attributes, FALSE);
+
+    if ([] === $attributes) {
+      return;
+    }
+
+    AttributesUtil::removeInvalidAttributeNames($attributes);
+
+    foreach ($attributes as $name => $value) {
+      if (\is_bool($value)) {
+        $this->storage[$name] = $value;
+      }
+      elseif (\is_array($value)) {
+        $this->keyCollectNestedStringsInArray($name, $value);
+      }
+      else {
+        $value = (string) $value;
+        $this->storage[$name][$value] = $value;
+      }
+    }
   }
 
   /**
@@ -40,9 +61,13 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @return $this
    */
   public function setAttributes($attributes = array(), $explode = TRUE) {
-    if ($attributes instanceof Attributes) {
-      $this->storage = $attributes->toArray();
-      $attributes = array();
+
+    if ($attributes instanceof self) {
+      // Attributes from another instance are already in the correct format.
+      foreach ($attributes->storage as $name => $value) {
+        $this->storage[$name] = $value;
+      }
+      return $this;
     }
 
     AttributesUtil::removeInvalidAttributeNames($attributes);
@@ -71,11 +96,15 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @see \ArrayAccess::offsetGet()
    */
   public function offsetGet($name) {
-    $return = $this->setStorage(
-      $this->getStorage() + array($name => array())
-    )->toArray();
-
-    return $return[$name];
+    if (!isset($this->storage[$name])) {
+      return NULL;
+    }
+    $value = $this->storage[$name];
+    if (\is_bool($value)) {
+      return $value;
+    }
+    $return = array_values($value);
+    return $return;
   }
 
   /**
@@ -94,11 +123,17 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       return;
     }
 
-    $storage = $this->getStorage() + array($name => array());
-
-    $storage[$name] = $value;
-
-    $this->setStorage($storage);
+    if (\is_bool($value)) {
+      $this->storage[$name] = $value;
+    }
+    elseif (\is_array($value)) {
+      $this->storage[$name] = [];
+      $this->keyCollectNestedStringsInArray($name, $value);
+    }
+    else {
+      $value = (string) $value;
+      $this->storage[$name] = [$value => $value];
+    }
   }
 
   /**
@@ -110,11 +145,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @see \ArrayAccess::offsetUnset()
    */
   public function offsetUnset($name) {
-    $storage = $this->getStorage();
-
-    unset($storage[$name]);
-
-    $this->setStorage($storage);
+    unset($this->storage[$name]);
   }
 
   /**
@@ -129,9 +160,8 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @see \ArrayAccess::offsetExists()
    */
   public function offsetExists($name) {
-    $storage = $this->toArray();
-
-    return isset($storage[$name]);
+    return isset($this->storage[$name])
+      && [] !== $this->storage[$name];
   }
 
   /**
@@ -152,22 +182,33 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       return $this;
     }
 
-    $data = $value;
-
-    if (TRUE === $explode && !is_bool($value)) {
-      $value = new \RecursiveIteratorIterator(new \RecursiveArrayIterator((array) $value));
-
-      $data = array();
-
-      foreach ($value as $item) {
-        $data = array_merge($data, explode(' ', $item));
-      }
-
-      $data = array_values(array_filter($data, 'strlen'));
-      $data = array_combine($data, $data);
+    if (\is_bool($value)) {
+      $this->storage[$name] = $value;
     }
-
-    $this->offsetSet($name, $data);
+    elseif (\is_string($value)) {
+      if (!$explode) {
+        $this->storage[$name] = [$value => $value];
+      }
+      else {
+        $parts = explode(' ', $value);
+        $this->storage[$name] = array_combine($parts, $parts);
+        unset($this->storage['']);
+      }
+    }
+    elseif (\is_array($value)) {
+      $this->storage[$name] = [];
+      if (!$explode) {
+        $this->keyCollectNestedStringsInArray($name, $value);
+      }
+      else {
+        $this->keyCollectNestedFragmentsInArray($name, $value);
+        unset($this->storage[$name]['']);
+      }
+    }
+    else {
+      $value = (string) $value;
+      $this->storage[$name] = [$value => $value];
+    }
 
     return $this;
   }
@@ -188,29 +229,24 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       return $this;
     }
 
-    $attributes = $this->getStorage();
-
-    if (is_bool($value)) {
-      $attributes[$name] = $value;
-      $this->storage = $attributes;
+    if (\is_bool($value)) {
+      $this->storage[$name] = $value;
+    }
+    elseif (\is_array($value)) {
+      if (isset($this->storage[$name]) && \is_bool($this->storage[$name])) {
+        unset($this->storage[$name]);
+      }
+      $this->keyCollectNestedStringsInArray($name, $value);
+    }
+    else {
+      if (isset($this->storage[$name]) && \is_bool($this->storage[$name])) {
+        unset($this->storage[$name]);
+      }
+      $value = (string) $value;
+      $this->storage[$name][$value] = $value;
     }
 
-    if (empty($name) || is_bool($value)) {
-      return $this;
-    }
-
-    $attributes += array($name => array());
-
-    $value_iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator((array) $value));
-
-    $data = array();
-    foreach ($value_iterator as $item) {
-      $data[] = (string) $item;
-    }
-
-    $attributes[$name] = array_unique(array_merge((array) $attributes[$name], array_values($data)));
-
-    return $this->setStorage($attributes);
+    return $this;
   }
 
   /**
@@ -224,24 +260,27 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @return $this
    */
   public function remove($name, $value = FALSE) {
-    $attributes = $this->getStorage();
 
-    if (!isset($attributes[$name])) {
+    if (!isset($this->storage[$name])) {
       return $this;
     }
 
-    if (is_bool($value)) {
-      unset($attributes[$name]);
+    if (\is_bool($value)) {
+      unset($this->storage[$name]);
+    }
+    elseif (\is_bool($this->storage[$name])) {
+      // Do nothing.
+    }
+    elseif (\is_array($value)) {
+      foreach ($value as $part) {
+        unset($this->storage[$name][$part]);
+      }
     }
     else {
-      if (!is_array($value)) {
-        $value = [(string) $value];
-      }
-
-      $attributes[$name] = array_values(array_diff($attributes[$name], $value));
+      unset($this->storage[$name][(string) $value]);
     }
 
-    return $this->setStorage($attributes);
+    return $this;
   }
 
   /**
@@ -267,12 +306,14 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @return $this
    */
   public function delete($name = array()) {
-    $value_iterator = new \RecursiveIteratorIterator(
-      new \RecursiveArrayIterator((array) $name)
-    );
-
-    foreach ($value_iterator as $item) {
-      $this->offsetUnset($item);
+    if (\is_string($name)) {
+      unset($this->storage[$name]);
+    }
+    elseif (\is_array($name)) {
+      // Support nested lists of keys to unset, for BC reasons.
+      foreach ($name as $nested_arg) {
+        $this->delete($nested_arg);
+      }
     }
 
     return $this;
@@ -301,24 +342,18 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    *   The attributes's name.
    * @param string $value
    *   The attribute's value.
-   * @param array|string $replacement
+   * @param string $replacement
    *   The replacement value.
    *
    * @return $this
    */
   public function replace($name, $value, $replacement) {
-    $attributes = $this->getStorage();
-
-    if (isset($attributes[$name])) {
-      $attributes[$name] = array_replace($attributes[$name],
-        array_fill_keys(
-          array_keys($attributes[$name], $value),
-          $replacement
-        )
-      );
+    if (isset($this->storage[$name][$value])) {
+      $this->storage[$name][$value] = $replacement;
+      $this->storage[$name] = array_combine($this->storage[$name], $this->storage[$name]);
     }
 
-    return $this->setStorage($attributes);
+    return $this;
   }
 
   /**
@@ -330,19 +365,43 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @return $this
    */
   public function merge(array $data = array()) {
-    if ($data instanceof Attributes) {
-      $data = $data->toArray();
+
+    if ($data instanceof self) {
+      // Values from an instance of this class already have the correct format.
+      foreach ($data->storage as $name => $value) {
+        if (!isset($this->storage[$name])) {
+          $this->storage[$name] = $value;
+        }
+        $existing_value = $this->storage[$name];
+        if (\is_bool($existing_value) || \is_bool($value)) {
+          // Simply overwrite.
+          $this->storage[$name] = $value;
+        }
+        $this->storage[$name] += $value;
+      }
     }
+    elseif (\is_array($data)) {
 
-    if (!is_array($data) || is_null($data)) {
-      // @todo: error handling.
-      return $this;
-    }
+      AttributesUtil::removeInvalidAttributeNames($data);
 
-    AttributesUtil::removeInvalidAttributeNames($data);
+      foreach ($data as $name => $unchecked_value) {
+        if (\is_bool($unchecked_value)) {
+          $this->storage[$name] = $unchecked_value;
+        }
+        else {
+          if (isset($this->storage[$name]) && \is_bool($this->storage[$name])) {
+            $this->storage[$name] = [];
+          }
 
-    foreach ($data as $name => $value) {
-      $this->append($name, $value);
+          if (\is_array($unchecked_value)) {
+            $this->keyCollectNestedStringsInArray($name, $unchecked_value);
+          }
+          else {
+            $value = (string) $unchecked_value;
+            $this->storage[$name][$value] = $value;
+          }
+        }
+      }
     }
 
     return $this;
@@ -360,17 +419,26 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    *   Whereas an attribute exists.
    */
   public function exists($name, $value = FALSE) {
-    $storage = $this->getStorage();
 
-    if (!isset($storage[$name])) {
+    if (!isset($this->storage[$name])) {
       return FALSE;
     }
 
-    return $storage[$name] !== array_filter(
-      $storage[$name],
-      function ($item) use ($value) {
-        return $item !== $value;
-      });
+    if (NULL === $value) {
+      // This case makes no sense, but the unit test wants this exact result.
+      // @todo Either document that NULL is supported, or remove this case.
+      return FALSE;
+    }
+
+    if (\is_bool($actual_value = $this->storage[$name])) {
+      return $actual_value === $value;
+    }
+
+    if (\is_string($value)) {
+      return isset($actual_value[$value]);
+    }
+
+    throw new \InvalidArgumentException("Second parameter is expected to be bool|string.");
   }
 
   /**
@@ -385,24 +453,25 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    *   Whereas an attribute contains a value.
    */
   public function contains($name, $value = FALSE) {
-    $storage = $this->getStorage();
 
-    if (!isset($storage[$name])) {
+    if (!isset($this->storage[$name])) {
       return FALSE;
     }
 
-    if (empty($storage[$name])) {
-      return FALSE;
+    if (\is_bool($actual_value = $this->storage[$name])) {
+      return $actual_value === $value;
     }
 
-    $candidates = $storage[$name];
-
-    if (!is_array($candidates)) {
-      $candidates = array($candidates);
+    if (!\is_string($value)) {
+      throw new \InvalidArgumentException("Second parameter is expected to be bool|string.");
     }
 
-    foreach ($candidates as $item) {
-      if (FALSE !== stripos($item, $value)) {
+    if (isset($actual_value[$value])) {
+      return TRUE;
+    }
+
+    foreach ($actual_value as $part) {
+      if (FALSE !== strpos($part, $value)) {
         return TRUE;
       }
     }
@@ -414,50 +483,45 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * {@inheritdoc}
    */
   public function __toString() {
-    $attributes = $this->getStorage();
 
     // If empty, just return an empty string.
-    if (empty($attributes)) {
+    if ([] === $this->storage) {
       return '';
     }
 
-    foreach ($attributes as $name => &$data) {
-      if (is_numeric($name) || is_bool($data)) {
-        $data = $name;
+    $values = $this->storage;
+
+    // The 'placeholder' attribute is special, for some reason..
+    if (isset($values['placeholder']) && \is_array($values['placeholder'])) {
+      $placeholder_value = [];
+      foreach ($values['placeholder'] as $part) {
+        $part = strip_tags($part);
+        $placeholder_value[$part] = $part;
       }
-      else {
-        $data = array_map(function ($item) use ($name) {
-          if ('placeholder' === $name) {
-            $item = strip_tags($item);
-          }
+      $values['placeholder'] = $placeholder_value;
+    }
 
-          /*
-           * @todo: Disabled for now, it's causing issue in
-           * @todo: admin/structure/views/settings.
-           *
-           * if ('id' === $attribute) {
-           *   $item = drupal_html_id($item);.
-           * }
-           */
+    // By default, sort the value of the class attribute.
+    if (isset($values['class']) && \is_array($values['class'])) {
+      asort($values['class']);
+    }
 
-          return check_plain($item);
-        }, (array) $data);
+    asort($values);
 
-        // By default, sort the value of the class attribute.
-        if ('class' === $name) {
-          asort($data);
-        }
-
-        // If the attribute is numeric, just display the value.
-        // Ex: 0="data-closable" will be displayed: data-closable.
-        $data = sprintf('%s="%s"', $name, implode(' ', $data));
+    $pieces = [];
+    foreach ($values as $name => $value) {
+      if (\is_bool($value)) {
+        $pieces[] = ' ' . $name;
+        continue;
       }
+      // If the value is not boolean, it must be an array.
+      $pieces[] = ' ' . $name . '="' . check_plain(implode(' ', $value)) . '"';
     }
 
     // Sort the attributes.
-    asort($attributes);
+    sort($pieces);
 
-    return $attributes ? ' ' . implode(' ', $attributes) : '';
+    return implode('', $pieces);
   }
 
   /**
@@ -467,27 +531,16 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    *   An associative array of attributes.
    */
   public function toArray() {
-    $array = [];
-    foreach ($this->getStorage() as $name => $value) {
-      if (is_bool($value)) {
-        $array[$name] = TRUE;
-      }
-      elseif (is_array($value)) {
-        $array[$name] = [];
-        foreach ($value as $v) {
-          $array[$name][] = (string) $v;
-        }
+    $values = [];
+    foreach ($this->storage as $name => $value) {
+      if (\is_bool($value)) {
+        $values[$name] = TRUE;
       }
       else {
-        if (!empty($value)) {
-          $array[$name] = [(string) $value];
-        }
-        else {
-          $array[$name] = [];
-        }
+        $values[$name] = array_values($value);
       }
     }
-    return $array;
+    return $values;
   }
 
   /**
@@ -495,19 +548,10 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    *
    * @return array
    *   The storage.
+   *
+   * @todo Perhaps this can be removed.
    */
   public function getStorage() {
-    // Flatten the array.
-    array_walk($this->storage, function (&$member) {
-      // Take care of loners attributes.
-      if (!is_bool($member)) {
-        $value_iterator = new \RecursiveIteratorIterator(
-          new \RecursiveArrayIterator((array) $member)
-        );
-        $member = array_values(array_unique(iterator_to_array($value_iterator, FALSE)));
-      }
-    });
-
     return $this->storage;
   }
 
@@ -523,6 +567,18 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
 
     AttributesUtil::removeInvalidAttributeNames($storage);
 
+    foreach ($storage as $name => $value) {
+      if (\is_bool($value)) {
+        continue;
+      }
+      if (!\is_array($value)) {
+        throw new \InvalidArgumentException("Values in storage must be bool or array.");
+      }
+      if ($value !== array_map($value, $value)) {
+        throw new \InvalidArgumentException("Array values in storage must have keys identical to their values.");
+      }
+    }
+
     $this->storage = $storage;
 
     return $this;
@@ -533,6 +589,47 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    */
   public function getIterator() {
     return new \ArrayIterator($this->toArray());
+  }
+
+  /**
+   * Collects string values in a nested array, without exploding.
+   *
+   * @param string $name
+   * @param array $tree
+   */
+  private function keyCollectNestedStringsInArray($name, array $tree) {
+    foreach ($tree as $subtree) {
+      if (\is_array($subtree)) {
+        $this->keyCollectNestedStringsInArray($name, $subtree);
+      }
+      else {
+        $value = (string) $subtree;
+        $this->storage[$name][$value] = $value;
+      }
+    }
+  }
+
+  /**
+   * @param string $name
+   *   Attribute name where the nested fragments should be inserted.
+   * @param array $tree
+   *   Value array containing nested fragments.
+   */
+  private function keyCollectNestedFragmentsInArray($name, array $tree) {
+    foreach ($tree as $subtree) {
+      if (\is_string($subtree)) {
+        foreach (explode(' ', $subtree) as $part) {
+          $this->storage[$name][$part] = $part;
+        }
+      }
+      elseif (\is_array($subtree)) {
+        $this->keyCollectNestedFragmentsInArray($name, $subtree);
+      }
+      else {
+        $value = (string) $subtree;
+        $this->storage[$name][$value] = $value;
+      }
+    }
   }
 
 }
