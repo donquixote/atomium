@@ -95,7 +95,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
   /**
    * Sets values for an attribute key.
    *
-   * @param string $attribute
+   * @param string $name
    *   Name of the attribute.
    * @param string|array|bool $value
    *   Value(s) to set for the given attribute key.
@@ -104,7 +104,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    *
    * @return $this
    */
-  public function setAttribute($attribute, $value = FALSE, $explode = TRUE) {
+  public function setAttribute($name, $value = FALSE, $explode = TRUE) {
     $data = $value;
 
     if (TRUE === $explode && !is_bool($value)) {
@@ -120,7 +120,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       $data = array_combine($data, $data);
     }
 
-    $this->offsetSet($attribute, $data);
+    $this->offsetSet($name, $data);
 
     return $this;
   }
@@ -128,26 +128,26 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
   /**
    * Append a value into an attribute.
    *
-   * @param string $key
+   * @param string $name
    *   The attribute's name.
    * @param string|array|bool $value
    *   The attribute's value.
    *
    * @return $this
    */
-  public function append($key, $value = FALSE) {
+  public function append($name, $value = FALSE) {
     $attributes = $this->getStorage();
 
     if (is_bool($value)) {
-      $attributes[$key] = $value;
+      $attributes[$name] = $value;
       $this->storage = $attributes;
     }
 
-    if (empty($key) || is_bool($value)) {
+    if (empty($name) || is_bool($value)) {
       return $this;
     }
 
-    $attributes += array($key => array());
+    $attributes += array($name => array());
 
     $value_iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator((array) $value));
 
@@ -156,7 +156,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       $data = array_merge($data, explode(' ', $item));
     }
 
-    $attributes[$key] = array_unique(array_merge((array) $attributes[$key], array_values(array_filter($data, 'strlen'))));
+    $attributes[$name] = array_unique(array_merge((array) $attributes[$name], array_values(array_filter($data, 'strlen'))));
 
     return $this->setStorage($attributes);
   }
@@ -164,29 +164,29 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
   /**
    * Remove a value from a specific attribute.
    *
-   * @param string $key
+   * @param string $name
    *   The attribute's name.
    * @param string|array|bool $value
    *   The attribute's value.
    *
    * @return $this
    */
-  public function remove($key, $value = FALSE) {
+  public function remove($name, $value = FALSE) {
     $attributes = $this->getStorage();
 
-    if (!isset($attributes[$key])) {
+    if (!isset($attributes[$name])) {
       return $this;
     }
 
     if (is_bool($value)) {
-      unset($attributes[$key]);
+      unset($attributes[$name]);
     }
     else {
       if (!is_array($value)) {
         $value = explode(' ', $value);
       }
 
-      $attributes[$key] = array_values(array_diff($attributes[$key], $value));
+      $attributes[$name] = array_values(array_diff($attributes[$name], $value));
     }
 
     return $this->setStorage($attributes);
@@ -229,23 +229,23 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
   /**
    * Return the attributes.
    *
-   * @param string $key
+   * @param string $name
    *   The attributes's name.
    * @param array|string $value
    *   The attribute's value.
    *
    * @return $this
    */
-  public function without($key, $value) {
+  public function without($name, $value) {
     $attributes = clone $this;
 
-    return $attributes->remove($key, $value);
+    return $attributes->remove($name, $value);
   }
 
   /**
    * Replace a value with another.
    *
-   * @param string $key
+   * @param string $name
    *   The attributes's name.
    * @param string $value
    *   The attribute's value.
@@ -254,13 +254,13 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    *
    * @return $this
    */
-  public function replace($key, $value, $replacement) {
+  public function replace($name, $value, $replacement) {
     $attributes = $this->getStorage();
 
-    if (isset($attributes[$key])) {
-      $attributes[$key] = array_replace($attributes[$key],
+    if (isset($attributes[$name])) {
+      $attributes[$name] = array_replace($attributes[$name],
         array_fill_keys(
-          array_keys($attributes[$key], $value),
+          array_keys($attributes[$name], $value),
           $replacement
         )
       );
@@ -287,8 +287,8 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       return $this;
     }
 
-    foreach ($data as $key => $value) {
-      $this->append($key, $value);
+    foreach ($data as $name => $value) {
+      $this->append($name, $value);
     }
 
     return $this;
@@ -297,7 +297,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
   /**
    * Check if attribute exists.
    *
-   * @param string $key
+   * @param string $name
    *   Attribute name.
    * @param string|bool $value
    *   Attribute value.
@@ -305,15 +305,15 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @return bool
    *   Whereas an attribute exists.
    */
-  public function exists($key, $value = FALSE) {
+  public function exists($name, $value = FALSE) {
     $storage = $this->getStorage();
 
-    if (!isset($storage[$key])) {
+    if (!isset($storage[$name])) {
       return FALSE;
     }
 
-    return $storage[$key] !== array_filter(
-      $storage[$key],
+    return $storage[$name] !== array_filter(
+      $storage[$name],
       function ($item) use ($value) {
         return $item !== $value;
       });
@@ -322,7 +322,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
   /**
    * Check if attribute contains a value.
    *
-   * @param string $key
+   * @param string $name
    *   Attribute name.
    * @param string|bool $value
    *   Attribute value.
@@ -330,18 +330,18 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @return bool
    *   Whereas an attribute contains a value.
    */
-  public function contains($key, $value = FALSE) {
+  public function contains($name, $value = FALSE) {
     $storage = $this->getStorage();
 
-    if (!isset($storage[$key])) {
+    if (!isset($storage[$name])) {
       return FALSE;
     }
 
-    if (empty($storage[$key])) {
+    if (empty($storage[$name])) {
       return FALSE;
     }
 
-    $candidates = $storage[$key];
+    $candidates = $storage[$name];
 
     if (!is_array($candidates)) {
       $candidates = array($candidates);
@@ -367,13 +367,13 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       return '';
     }
 
-    foreach ($attributes as $attribute => &$data) {
-      if (is_numeric($attribute) || is_bool($data)) {
-        $data = sprintf('%s', trim(check_plain($attribute)));
+    foreach ($attributes as $name => &$data) {
+      if (is_numeric($name) || is_bool($data)) {
+        $data = sprintf('%s', trim(check_plain($name)));
       }
       else {
-        $data = array_map(function ($item) use ($attribute) {
-          if ('placeholder' === $attribute) {
+        $data = array_map(function ($item) use ($name) {
+          if ('placeholder' === $name) {
             $item = strip_tags($item);
           }
 
@@ -390,13 +390,13 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
         }, (array) $data);
 
         // By default, sort the value of the class attribute.
-        if ('class' === $attribute) {
+        if ('class' === $name) {
           asort($data);
         }
 
         // If the attribute is numeric, just display the value.
         // Ex: 0="data-closable" will be displayed: data-closable.
-        $data = sprintf('%s="%s"', $attribute, implode(' ', $data));
+        $data = sprintf('%s="%s"', $name, implode(' ', $data));
       }
     }
 
