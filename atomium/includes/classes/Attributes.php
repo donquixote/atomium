@@ -38,6 +38,8 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       $attributes = array();
     }
 
+    AttributesUtil::removeInvalidAttributeNames($attributes);
+
     foreach ($attributes as $name => $value) {
       if (is_numeric($name)) {
         $this->setAttribute($value, TRUE, $explode);
@@ -65,6 +67,11 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * {@inheritdoc}
    */
   public function offsetSet($name, $value = FALSE) {
+
+    if (!AttributesUtil::attributeNameIsValidOrNotice($name)) {
+      return;
+    }
+
     $storage = $this->getStorage() + array($name => array());
 
     $storage[$name] = $value;
@@ -105,6 +112,11 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @return $this
    */
   public function setAttribute($name, $value = FALSE, $explode = TRUE) {
+
+    if (!AttributesUtil::attributeNameIsValidOrNotice($name)) {
+      return $this;
+    }
+
     $data = $value;
 
     if (TRUE === $explode && !is_bool($value)) {
@@ -136,6 +148,11 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @return $this
    */
   public function append($name, $value = FALSE) {
+
+    if (!AttributesUtil::attributeNameIsValidOrNotice($name)) {
+      return $this;
+    }
+
     $attributes = $this->getStorage();
 
     if (is_bool($value)) {
@@ -287,6 +304,8 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       return $this;
     }
 
+    AttributesUtil::removeInvalidAttributeNames($data);
+
     foreach ($data as $name => $value) {
       $this->append($name, $value);
     }
@@ -369,7 +388,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
 
     foreach ($attributes as $name => &$data) {
       if (is_numeric($name) || is_bool($data)) {
-        $data = sprintf('%s', trim(check_plain($name)));
+        $data = $name;
       }
       else {
         $data = array_map(function ($item) use ($name) {
@@ -468,6 +487,9 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @return $this
    */
   public function setStorage(array $storage = array()) {
+
+    AttributesUtil::removeInvalidAttributeNames($storage);
+
     $this->storage = $storage;
 
     return $this;
