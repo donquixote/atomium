@@ -432,7 +432,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
         $value_iterator = new \RecursiveIteratorIterator(
           new \RecursiveArrayIterator((array) $member)
         );
-        $member = array_values(array_unique(iterator_to_array($value_iterator)));
+        $member = array_values(array_unique(iterator_to_array($value_iterator, FALSE)));
       }
     });
 
