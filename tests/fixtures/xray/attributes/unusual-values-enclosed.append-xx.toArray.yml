@@ -36,6 +36,7 @@
 '""':
     name:
         - a
+        - ''
         - z
 '" "':
     name:
@@ -53,6 +54,7 @@
         - z
 'false':
     name:
+        - ''
         - z
 '[true]':
     name:
@@ -67,10 +69,12 @@
 '[false,false]':
     name:
         - a
+        - ''
         - z
 '["",""]':
     name:
         - a
+        - ''
         - z
 '["x",5,5.1,true,false,""]':
     name:
@@ -79,10 +83,12 @@
         - '5'
         - '5.1'
         - '1'
+        - ''
         - z
 0:
     name:
         - a
+        - '0'
         - z
 3:
     name:

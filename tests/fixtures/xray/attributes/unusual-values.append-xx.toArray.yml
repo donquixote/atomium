@@ -17,9 +17,11 @@
 '[false,false]':
     name: true
 '["",""]':
-    name: {  }
+    name:
+        - ''
 '["x",5,5.1,true,false,""]':
-    name: {  }
+    name:
+        - ''
 0: {  }
 3: {  }
 '[1,2,3]':
