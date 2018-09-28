@@ -58,24 +58,30 @@
         2: z
 '[true]':
     name:
+        - a
         - true
         - z
 '[true,true]':
     name:
+        - a
         - true
         - z
 '[false,false]':
     name:
-        1: z
+        0: a
+        2: z
 '["",""]':
     name:
-        1: z
+        0: a
+        2: z
 '["x",5,5.1,true,false,""]':
     name:
-        - x
-        - 5
-        - z
-        - true
+        0: a
+        1: x
+        2: 5
+        3: 5.1
+        4: true
+        6: z
 0:
     name:
         0: a
@@ -87,11 +93,16 @@
         - z
 '[1,2,3]':
     name:
+        - a
         - 1
         - 2
+        - 3
         - z
 '[1,[2,[3]]]':
     name:
+        - a
+        - 1
+        - 2
         - 3
         - z
 '1.7':
@@ -101,25 +112,33 @@
         - z
 '[1.7]':
     name:
+        - a
         - 1.7
         - z
 '[1.7,[1.9]]':
     name:
+        - a
+        - 1.7
         - 1.9
         - z
 '["a","b","c"]':
     name:
         - a
         - b
+        - c
         - z
 '["a "," b "," c "," d "," e"]':
     name:
+        - a
         - 'a '
         - ' b '
-        - z
+        - ' c '
         - ' d '
         - ' e'
+        - z
 '["a",["b",["c"]]]':
     name:
+        - a
+        - b
         - c
         - z
