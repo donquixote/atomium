@@ -50,11 +50,9 @@
         - z
 'true':
     name:
-        - '1'
         - z
 'false':
     name:
-        - ''
         - z
 '[true]':
     name:

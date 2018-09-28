@@ -4,16 +4,20 @@
 '"value "':
     name:
         - value
+        - ''
 '" value"':
     name:
+        - ''
         - value
 '"  value  "':
     name:
+        - ''
         - value
 '"va l  ue"':
     name:
         - va
         - l
+        - ''
         - ue
 '"mm mm"':
     name:
@@ -22,11 +26,14 @@
     name:
         - 'val$u"e'
 '""':
-    name: {  }
+    name:
+        - ''
 '" "':
-    name: {  }
+    name:
+        - ''
 '"  "':
-    name: {  }
+    name:
+        - ''
 'true':
     name: true
 'false':
