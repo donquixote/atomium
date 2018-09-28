@@ -187,7 +187,9 @@
         return: ' placeholder="helloA Bworld"'
     - getStorage:
         return:
-          placeholder: ['<b>hello<em>A', 'B</em>world</b>']
+          placeholder:
+            '<b>hello<em>A': '<b>hello<em>A'
+            'B</em>world</b>': 'B</em>world</b>'
 
 -
   given: { }
@@ -198,7 +200,8 @@
         return: ' placeholder="helloA Bworld"'
     - getStorage:
         return:
-          placeholder: ['<b>hello<em>A B</em>world</b>']
+          placeholder:
+            '<b>hello<em>A B</em>world</b>': '<b>hello<em>A B</em>world</b>'
 
 -
   given: { }
@@ -209,7 +212,11 @@
         return: ' name="1 two 3 4"'
     - getStorage:
         return:
-          name: ['1', 'two', '3', '4']
+          name:
+            1: '1'
+            two: two
+            3: '3'
+            4: '4'
 
 -
   given: { }
@@ -220,7 +227,11 @@
         return: ' name="1 two 3 4"'
     - getStorage:
         return:
-          name: [1, 'two', 3, 4]
+          name:
+            1: '1'
+            two: two
+            3: '3'
+            4: '4'
 
 -
   given: { }
@@ -231,4 +242,8 @@
         return: ' name="1 two 3 4"'
     - getStorage:
         return:
-          name: [1, 'two', 3, 4]
+          name:
+            1: '1'
+            two: two
+            3: '3'
+            4: '4'

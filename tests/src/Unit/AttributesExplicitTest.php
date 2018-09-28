@@ -64,7 +64,7 @@ class AttributesExplicitTest extends UnitTestBase {
 
     foreach ([
       [TRUE, TRUE],
-      [FALSE, TRUE],
+      [FALSE, FALSE],
       [['a', 'b', 'c'], ['a', 'b', 'c']],
       ['cat', ['cat']],
       ['', ['']],
@@ -107,9 +107,9 @@ class AttributesExplicitTest extends UnitTestBase {
       $attributes);
 
     self::assertAppend(
-      ' boolean="1 xx"',
+      ' boolean="xx"',
       [
-        'boolean' => ['1', 'xx'],
+        'boolean' => ['xx'],
       ],
       $attributes,
       [
@@ -154,9 +154,9 @@ class AttributesExplicitTest extends UnitTestBase {
       $message);
 
     self::assertAppend(
-      ' parts="1 zz"',
+      ' parts="zz"',
       [
-        'parts' => ['1', 'zz'],
+        'parts' => ['zz'],
       ],
       $attributes,
       [
@@ -425,7 +425,7 @@ class AttributesExplicitTest extends UnitTestBase {
     self::assertToString(
       $expected,
       $attributes,
-      var_export($value, TRUE) . ' via setAttribute()');
+      var_export($value, TRUE) . ' via setAttribute(*, FALSE)');
 
     $attributes = new Attributes();
     $attributes->append($name, $value);
