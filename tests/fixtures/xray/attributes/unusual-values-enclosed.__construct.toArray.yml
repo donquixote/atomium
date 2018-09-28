@@ -6,29 +6,27 @@
 '"value "':
     name:
         - a
-        - value
+        - 'value '
         - z
 '" value"':
     name:
         - a
-        - value
+        - ' value'
         - z
 '"  value  "':
     name:
         - a
-        - value
+        - '  value  '
         - z
 '"va l  ue"':
     name:
         - a
-        - va
-        - l
-        - ue
+        - 'va l  ue'
         - z
 '"mm mm"':
     name:
         - a
-        - mm
+        - 'mm mm'
         - z
 '"val$u\"e"':
     name:
@@ -42,10 +40,12 @@
 '" "':
     name:
         - a
+        - ' '
         - z
 '"  "':
     name:
         - a
+        - '  '
         - z
 'true':
     name:
@@ -130,10 +130,11 @@
 '["a "," b "," c "," d "," e"]':
     name:
         - a
-        - b
-        - c
-        - d
-        - e
+        - 'a '
+        - ' b '
+        - ' c '
+        - ' d '
+        - ' e'
         - z
 '["a",["b",["c"]]]':
     name:
