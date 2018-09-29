@@ -258,7 +258,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
    * @param array|string $value
    *   The attribute's value.
    *
-   * @return $this
+   * @return static
    */
   public function without($name, $value) {
     $attributes = clone $this;
