@@ -8,6 +8,7 @@ namespace Drupal\atomium;
  * @package Drupal\atomium
  */
 class Attributes implements \ArrayAccess, \IteratorAggregate {
+
   /**
    * Stores the attribute data.
    *
