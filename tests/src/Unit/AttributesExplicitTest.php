@@ -44,6 +44,24 @@ class AttributesExplicitTest extends UnitTestBase {
    */
   public function testOffset() {
 
+    $attributes = new Attributes();
+    self::assertToArray(
+      [],
+      $attributes);
+    self::assertToString(
+      '',
+      $attributes);
+    // Currently, offsetGet() has a side effect.
+    self::assertSame(
+      [],
+      $attributes['class']);
+    self::assertToArray(
+      ['class' => []],
+      $attributes);
+    self::assertToString(
+      ' class=""',
+      $attributes);
+
     foreach ([
       [TRUE, [TRUE]],
       [FALSE, []],
