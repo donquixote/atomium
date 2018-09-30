@@ -31,7 +31,7 @@
 'exists(''_empty_string_'', NULL)': false
 'exists(''_empty_string_'', true)': false
 'exists(''_empty_string_'', false)': false
-'exists(''_empty_string_'', '''')': false
+'exists(''_empty_string_'', '''')': true
 'exists(''_empty_array_'')': false
 'exists(''_empty_array_'', NULL)': false
 'exists(''_empty_array_'', true)': false
