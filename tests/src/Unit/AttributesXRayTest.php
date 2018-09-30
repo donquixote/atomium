@@ -6,37 +6,84 @@ use Drupal\atomium\Attributes;
 use Drupal\Tests\atomium\XRay\Canvas\XRayCanvasInterface;
 use Drupal\Tests\atomium\XRay\TestCase\XRayTestCaseBase;
 
+/**
+ * Tests the Attributes class using the XRay testing mechanism.
+ */
 class AttributesXRayTest extends XRayTestCaseBase {
 
   /**
+   * Gets the xray export directory.
+   *
    * @return string
+   *   Path to the xray fixtures directory.
    */
   protected function getExpectedValuesDirectory() {
     return dirname(dirname(__DIR__)) . '/fixtures/xray/attributes';
   }
 
   /**
+   * Generates values to be stored in or compared to the fixtures directory.
+   *
    * @param \Drupal\Tests\atomium\XRay\Canvas\XRayCanvasInterface $canvas
+   *   Canvas object to receive the values.
    */
   protected function generateValues(XRayCanvasInterface $canvas) {
 
-    $this->generateForArray(
-      $canvas->offset('order-of-attributes'),
-      [
-        'zzz' => TRUE,
-        'x' => 'y',
-        'aaa' => FALSE,
-        'class' => ['sidebar'],
-      ]);
+    foreach ($this->buildOutputss() as $groupname => $outputs) {
+      foreach ($outputs as $id => $output) {
+        $canvas
+          ->offset($groupname, $id)
+          ->set($output);
+      }
+    }
+  }
 
-    $this->generateForArray(
-      $canvas->offset('order-of-values'),
-      [
-        'class' => ['z', 'b a'],
-        'name' => ['z', 'b a'],
-      ]);
+  /**
+   * Builds output values.
+   *
+   * @return mixed[][]
+   *   Format: $[$groupname][$id] = $output.
+   */
+  private function buildOutputss() {
 
-    $values = [
+    $outputss = [];
+    foreach ($this->buildValues() as $groupname => $valuess) {
+      foreach ($valuess as $id => $values) {
+        foreach ($this->buildAttributesFromValues($values) as $builderMethod => $attributes) {
+
+          foreach ($this->buildOutputFromAttributes($attributes) as $outputMethod => $output) {
+            $outputss["$groupname.$builderMethod.$outputMethod"][$id] = $output;
+          }
+        }
+      }
+    }
+
+    return $outputss;
+  }
+
+  /**
+   * Builds values that will be used to generate Attributes objects.
+   *
+   * @return array[][]
+   *   Format: $[$groupname][$id][$attribute_name] = $attribute_value.
+   */
+  private function buildValues() {
+
+    $valuess = [];
+
+    $valuess['order-of-attributes'][''] = [
+      'zzz' => TRUE,
+      'x' => 'y',
+      'aaa' => FALSE,
+      'class' => ['sidebar'],
+    ];
+
+    $valuess['order-of-values'][''] = [
+      'class' => ['z', 'b a'],
+      'name' => ['z', 'b a'],
+    ];
+
+    foreach ([
       'value',
       'value ',
       ' value',
@@ -64,18 +111,10 @@ class AttributesXRayTest extends XRayTestCaseBase {
       ['a', 'b', 'c'],
       ['a ', ' b ', ' c ', ' d ', ' e'],
       ['a', ['b', ['c']]],
-    ];
-
-    foreach ($values as $value) {
+    ] as $value) {
       $key = \json_encode($value);
-
-      $this->generateForArray(
-        $canvas->offset('unusual-values', $key),
-        ['name' => $value]);
-
-      $this->generateForArray(
-        $canvas->offset('unusual-values-enclosed', $key),
-        ['name' => ['a', $value, 'z']]);
+      $valuess['unusual-values'][$key] = ['name' => $value];
+      $valuess['unusual-values-enclosed'][$key] = ['name' => ['a', $value, 'z']];
     }
 
     foreach ([
@@ -91,60 +130,51 @@ class AttributesXRayTest extends XRayTestCaseBase {
       '  ',
     ] as $name) {
       $key = \json_encode($name);
-
-      $this->generateForArray(
-        $canvas->offset('broken-names', $key),
-        [$name => 'value']);
-
-      $this->generateForArray(
-        $canvas->offset('broken-names-enclosed', $key),
-        [
-          'a' => TRUE,
-          $name => 'value',
-          'z' => TRUE,
-        ]);
+      $valuess['broken-names'][$key] = [$name => 'value'];
+      $valuess['broken-names-enclosed'][$key] = [
+        'a' => TRUE,
+        $name => 'value',
+        'z' => TRUE,
+      ];
     }
+
+    return $valuess;
   }
 
   /**
-   * @param \Drupal\Tests\atomium\XRay\Canvas\XRayCanvasInterface $canvas
+   * Builds attributes from values in different ways.
+   *
    * @param mixed[] $values
-   *   Format: $[$attribute_name] = $attribute_value
+   *   Format: $[$attribute_name] = $attribute_value.
+   *
+   * @return \Drupal\atomium\Attributes[]
+   *   Format: $[$builderMethod] = $attributes
    */
-  private function generateForArray(XRayCanvasInterface $canvas, array $values) {
+  private function buildAttributesFromValues(array $values) {
+    $attributess = [];
 
     $attributes = new Attributes($values);
-    $this->generateForAttributes(
-      $canvas->offset('__construct'),
-      $attributes);
+    $attributess['__construct'] = $attributes;
 
     $attributes = new Attributes();
     $attributes->setAttributes($values);
-    $this->generateForAttributes(
-      $canvas->offset('setAttributes'),
-      $attributes);
+    $attributess['setAttributes'] = $attributes;
 
     $attributes = new Attributes();
     foreach ($values as $k => $v) {
       $attributes->setAttribute($k, $v);
     }
-    $this->generateForAttributes(
-      $canvas->offset('setAttribute-x'),
-      $attributes);
+    $attributess['setAttribute-x'] = $attributes;
 
     $attributes = new Attributes();
     foreach ($values as $k => $v) {
       $attributes[$k] = $v;
     }
-    $this->generateForAttributes(
-      $canvas->offset('offsetSet'),
-      $attributes);
+    $attributess['offsetSet'] = $attributes;
 
     $attributes = new Attributes();
     $attributes->merge($values);
-    $this->generateForAttributes(
-      $canvas->offset('merge'),
-      $attributes);
+    $attributess['merge'] = $attributes;
 
     $attributes = new Attributes();
     foreach ($values as $k => $v) {
@@ -154,17 +184,13 @@ class AttributesXRayTest extends XRayTestCaseBase {
         }
       }
     }
-    $this->generateForAttributes(
-      $canvas->offset('merge-x'),
-      $attributes);
+    $attributess['merge-x'] = $attributes;
 
     $attributes = new Attributes();
     foreach ($values as $k => $v) {
       $attributes->append($k, $v);
     }
-    $this->generateForAttributes(
-      $canvas->offset('append-x'),
-      $attributes);
+    $attributess['append-x'] = $attributes;
 
     $attributes = new Attributes();
     foreach ($values as $k => $v) {
@@ -174,24 +200,30 @@ class AttributesXRayTest extends XRayTestCaseBase {
         }
       }
     }
+    $attributess['append-xx'] = $attributes;
 
-    $this->generateForAttributes(
-      $canvas->offset('append-xx'),
-      $attributes);
+    return $attributess;
   }
 
   /**
-   * @param \Drupal\Tests\atomium\XRay\Canvas\XRayCanvasInterface $canvas
+   * Builds output from an attributes object, in different ways.
+   *
    * @param \Drupal\atomium\Attributes $attributes
+   *   The attributes object.
+   *
+   * @return mixed[]
+   *   Format: $[$outputMethod] = $output
    */
-  private function generateForAttributes(XRayCanvasInterface $canvas, Attributes $attributes) {
+  private function buildOutputFromAttributes(Attributes $attributes) {
+    $outputs = [];
 
     $instance = clone $attributes;
-    $canvas->offsetPath('__toString')
-      ->set($instance->__toString());
+    $outputs['__toString'] = $instance->__toString();
 
     $instance = clone $attributes;
-    $canvas->offsetPath('toArray')
-      ->set($instance->toArray());
+    $outputs['toArray'] = $instance->toArray();
+
+    return $outputs;
   }
+
 }
