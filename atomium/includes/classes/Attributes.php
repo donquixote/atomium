@@ -38,7 +38,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
 
     foreach ($attributes as $name => $value) {
       if (\is_bool($value)) {
-        $this->storage[$name] = $value;
+        $this->storage[$name] = TRUE;
       }
       elseif (\is_array($value)) {
         $this->keyCollectNestedStringsInArray($name, $value);
@@ -101,7 +101,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
     }
     $value = $this->storage[$name];
     if (\is_bool($value)) {
-      return $value;
+      return TRUE;
     }
     $return = array_values($value);
     return $return;
@@ -124,7 +124,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
     }
 
     if (\is_bool($value)) {
-      $this->storage[$name] = $value;
+      $this->storage[$name] = TRUE;
     }
     elseif (\is_array($value)) {
       $this->storage[$name] = [];
@@ -183,7 +183,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
     }
 
     if (\is_bool($value)) {
-      $this->storage[$name] = $value;
+      $this->storage[$name] = TRUE;
     }
     elseif (\is_string($value)) {
       if (!$explode) {
@@ -230,7 +230,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
     }
 
     if (\is_bool($value)) {
-      $this->storage[$name] = $value;
+      $this->storage[$name] = TRUE;
     }
     elseif (\is_array($value)) {
       if (isset($this->storage[$name]) && \is_bool($this->storage[$name])) {
@@ -375,7 +375,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
         $existing_value = $this->storage[$name];
         if (\is_bool($existing_value) || \is_bool($value)) {
           // Simply overwrite.
-          $this->storage[$name] = $value;
+          $this->storage[$name] = TRUE;
         }
         $this->storage[$name] += $value;
       }
