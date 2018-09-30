@@ -3,10 +3,10 @@
 'exists(''_true_'', true)': true
 'exists(''_true_'', false)': false
 'exists(''_true_'', '''')': false
-'exists(''_false_'')': true
+'exists(''_false_'')': false
 'exists(''_false_'', NULL)': false
-'exists(''_false_'', true)': false
-'exists(''_false_'', false)': true
+'exists(''_false_'', true)': true
+'exists(''_false_'', false)': false
 'exists(''_false_'', '''')': false
 'exists(''_null_'')': true
 'exists(''_null_'', NULL)': false

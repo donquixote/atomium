@@ -3,10 +3,10 @@
 'contains(''_true_'', true)': true
 'contains(''_true_'', false)': false
 'contains(''_true_'', '''')': false
-'contains(''_false_'')': true
+'contains(''_false_'')': false
 'contains(''_false_'', NULL)': false
-'contains(''_false_'', true)': false
-'contains(''_false_'', false)': true
+'contains(''_false_'', true)': true
+'contains(''_false_'', false)': false
 'contains(''_false_'', '''')': false
 'contains(''_null_'')': true
 'contains(''_null_'', NULL)': 'InvalidArgumentException with message Second parameter is expected to be bool|string.'
