@@ -1,0 +1,11 @@
+'offsetGet(''_true_'')':
+    - true
+'offsetGet(''_false_'')': {  }
+'offsetGet(''_null_'')': {  }
+'offsetGet(''_parts_'')':
+    - aa
+    - bb
+'offsetGet(''_part_'')':
+    - aa
+'offsetGet(''_empty_string_'')': {  }
+'offsetGet(''_empty_array_'')': {  }

@@ -1,0 +1,40 @@
+'exists(''_true_'')': true
+'exists(''_true_'', NULL)': true
+'exists(''_true_'', true)': true
+'exists(''_true_'', false)': true
+'exists(''_true_'', '''')': true
+'exists(''_false_'')': true
+'exists(''_false_'', NULL)': true
+'exists(''_false_'', true)': true
+'exists(''_false_'', false)': true
+'exists(''_false_'', '''')': true
+'exists(''_null_'')': false
+'exists(''_null_'', NULL)': false
+'exists(''_null_'', true)': false
+'exists(''_null_'', false)': false
+'exists(''_null_'', '''')': false
+'exists(''_parts_'')': false
+'exists(''_parts_'', NULL)': false
+'exists(''_parts_'', true)': false
+'exists(''_parts_'', false)': false
+'exists(''_parts_'', '''')': false
+"exists('_parts_', array (\n  0 => 'aa',\n  1 => 'bb',\n))": false
+'exists(''_parts_'', ''aa'')': true
+'exists(''_parts_'', ''bb'')': true
+'exists(''_part_'')': false
+'exists(''_part_'', NULL)': false
+'exists(''_part_'', true)': false
+'exists(''_part_'', false)': false
+'exists(''_part_'', '''')': false
+'exists(''_part_'', ''aa'')': true
+'exists(''_empty_string_'')': false
+'exists(''_empty_string_'', NULL)': false
+'exists(''_empty_string_'', true)': false
+'exists(''_empty_string_'', false)': false
+'exists(''_empty_string_'', '''')': false
+'exists(''_empty_array_'')': false
+'exists(''_empty_array_'', NULL)': false
+'exists(''_empty_array_'', true)': false
+'exists(''_empty_array_'', false)': false
+'exists(''_empty_array_'', '''')': false
+"exists('_empty_array_', array (\n))": false
