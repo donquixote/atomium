@@ -438,6 +438,10 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
       return isset($actual_value[$value]);
     }
 
+    if (is_bool($value)) {
+      return TRUE;
+    }
+
     throw new \InvalidArgumentException("Second parameter is expected to be bool|string.");
   }
 
@@ -460,6 +464,10 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
 
     if (\is_bool($actual_value = $this->storage[$name])) {
       return $actual_value === $value;
+    }
+
+    if (\is_bool($value)) {
+      return TRUE;
     }
 
     if (!\is_string($value)) {
