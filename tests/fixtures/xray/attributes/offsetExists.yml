@@ -4,4 +4,4 @@
 'offsetExists(''_parts_'')': true
 'offsetExists(''_part_'')': true
 'offsetExists(''_empty_string_'')': true
-'offsetExists(''_empty_array_'')': true
+'offsetExists(''_empty_array_'')': false
