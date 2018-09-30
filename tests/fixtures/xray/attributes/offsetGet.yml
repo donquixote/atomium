@@ -6,5 +6,6 @@
     - bb
 'offsetGet(''_part_'')':
     - aa
-'offsetGet(''_empty_string_'')': {  }
+'offsetGet(''_empty_string_'')':
+    - ''
 'offsetGet(''_empty_array_'')': {  }
