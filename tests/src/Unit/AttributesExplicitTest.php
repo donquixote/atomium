@@ -64,7 +64,7 @@ class AttributesExplicitTest extends UnitTestBase {
 
     foreach ([
       [TRUE, TRUE],
-      [FALSE, FALSE],
+      [FALSE, TRUE],
       [['a', 'b', 'c'], ['a', 'b', 'c']],
       ['cat', ['cat']],
       ['', ['']],

@@ -63,8 +63,8 @@ class AttributesTest extends UnitTestBase {
     expect($attributes->exists('foo', 'bar'))->to->equal(FALSE);
     expect($attributes->exists('class', NULL))->to->equal(FALSE);
     expect($attributes->exists('id', 'atomium'))->to->equal(TRUE);
-    expect($attributes->exists('data-closable', FALSE))->to->equal(TRUE);
-    expect($attributes->exists('data-closable'))->to->equal(TRUE);
+    expect($attributes->exists('data-closable', FALSE))->to->equal(FALSE);
+    expect($attributes->exists('data-closable'))->to->equal(FALSE);
 
     expect($attributes->contains('class', 'fo'))->to->equal(TRUE);
     expect($attributes->contains('role'))->to->equal(FALSE);
