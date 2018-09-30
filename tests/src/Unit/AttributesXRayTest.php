@@ -45,8 +45,64 @@ class AttributesXRayTest extends XRayTestCaseBase {
    *   Format: $[$groupname][$id] = $output.
    */
   private function buildOutputss() {
-
     $outputss = [];
+
+    $attributes = new Attributes(
+      $values = [
+        '_true_' => TRUE,
+        '_false_' => FALSE,
+        '_null_' => NULL,
+        '_parts_' => ['aa', 'bb'],
+        '_part_' => 'aa',
+        '_empty_string_' => '',
+        '_empty_array_' => [],
+      ]);
+
+    foreach ($values as $name => $value) {
+
+      $name_export = var_export($name, TRUE);
+
+      $output = $attributes->contains($name);
+      $outputss['contains']["contains($name_export)"] = $output;
+
+      $output = $attributes->exists($name);
+      $outputss["exists"]["exists($name_export)"] = $output;
+
+      $output = $attributes->offsetGet($name);
+      $outputss["offsetGet"]["offsetGet($name_export)"] = $output;
+
+      $output = $attributes->offsetExists($name);
+      $outputss["offsetExists"]["offsetExists($name_export)"] = $output;
+
+      $parts_to_test = [NULL, TRUE, FALSE, ''];
+      $parts_to_test[] = $value;
+      if (is_array($value)) {
+        foreach ($value as $part) {
+          $parts_to_test[] = $part;
+        }
+      }
+
+      foreach ($parts_to_test as $v) {
+        $v_export = var_export($v, TRUE);
+
+        try {
+          $output = $attributes->contains($name, $v);
+        }
+        catch (\Exception $e) {
+          $output = get_class($e) . ' with message ' . $e->getMessage();
+        }
+        $outputss["contains"]["contains($name_export, $v_export)"] = $output;
+
+        try {
+          $output = $attributes->exists($name, $v);
+        }
+        catch (\Exception $e) {
+          $output = get_class($e) . ' with message ' . $e->getMessage();
+        }
+        $outputss["exists"]["exists($name_export, $v_export)"] = $output;
+      }
+    }
+
     foreach ($this->buildValues() as $groupname => $valuess) {
       foreach ($valuess as $id => $values) {
         foreach ($this->buildAttributesFromValues($values) as $builderMethod => $attributes) {
